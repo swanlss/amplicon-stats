@@ -6,7 +6,7 @@ number-sections: false
 highlight-style: pygments
 format:
   html:
-    theme: flatly
+    theme: sandstone
 output:
   html_document:
     toc: yes
@@ -14,7 +14,9 @@ output:
 editor: visual
 ---
 
-# S8: Amplicon & Multivariate Data Analyses in R
+## NIOZ Bioinformatics Workshop 2023
+
+## S8: Amplicon Data Analyses in R
 
 #### Swan LS Sow, Gonçalo Piedade, Harry Witte
 
@@ -32,15 +34,15 @@ You will learn:
 
 -   how to import .biom files into R
 -   dataframe/matrix wrangling to filter and remove unwanted/outlier data points
--   statistically analyze the "clean" dataset with various multivariate analyses methods.
+-   statistically analyze the "clean" dataset with various multivariate and phylogenetic analyses methods.
 
 The general workflow of amplicon data analyses looks something like this:
 
-![](/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/S8_AmpliconAnalysisRPt1/Images/Workflow.png){width="720"}
+![](https://user-images.githubusercontent.com/25445935/228502290-e333587a-bfa4-4825-aec9-c9c409a40d15.png){width="720"}
 
 The dataset we are using today was generated from samples in this paper by [Vaksmaa et.al. (2021)](https://www.frontiersin.org/articles/10.3389/fmicb.2021.673553/full)
 
-![](/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/S8_AmpliconAnalysisRPt1/Images/Vaksmaa_PlasticsPaper.png){width="300," height="300"}
+![](https://user-images.githubusercontent.com/25445935/228501511-0ae252c5-48ed-438e-929a-bec4b33362b0.png){width="300," height="300"}
 
 ### 0.2 Prerequisites & Quick Guide on Setting up RStudio
 
@@ -209,7 +211,7 @@ asvtab.mat<-as.matrix(biom_data(asvtab.biom)) # OR
 
 The first thing we need to do is to check if our ASV table was imported into R properly, with all the samples and ASVs we would expect from our dataset. It isn't possible to import the ASV table directly as a dataframe, you will get the following error message:
 
-![](/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/S8_AmpliconAnalysisRPt1/Images/Biom_Df_ImportError.png)
+![](https://user-images.githubusercontent.com/25445935/228502546-32cc97f1-80b9-4b67-8a0f-1709e5182abb.png)
 
 You could do this instead, then you could directly view the number of rows/columns (No. of ASVs/No. of Samples) in the <i>Environment</i> tab of your R studio console:
 
@@ -898,9 +900,11 @@ permutest(permdisp, pairwise = TRUE, permutations = 999)
 
 ```
 
-# 9. Phylogenetic Diversity
+# 9. Exploring Phylogenetic Diversity - Plotting Abundances with <i>Phyloseq</i>
 
-Plot Abundances with Phyloseq
+<i>Phyloseq</i> is a great package to visualize your data. It makes sure that your data tables are nicely matching. So it's fool proof! Here we cover some absolute basics. The <i>Phyloseq</i> graphs use the same aesthetics as ggplot.
+
+#### Generate your <i>Phyloseq</i> objects and make a simple plot
 
 ```{r,eval=T, warning=FALSE}
 OTU = asvtab.c.StdByTotM2 |> as.matrix() |> otu_table(, taxa_are_rows = TRUE)
@@ -917,6 +921,8 @@ plot_bar(carbom, fill="Phylum") +
   facet_wrap(~Plastic, scales="free_x", nrow=1)
 ```
 
+#### Zooming into specific taxa
+
 Let's zoom into the Bacteriodetes:
 
 ```{r,eval=T, warning=FALSE}
@@ -927,7 +933,7 @@ plot_bar(GPr, fill="Family") +
   facet_wrap(~Plastic, scales="free_x", nrow=1)
 ```
 
-We'll plot the 100 most abundant Bacteroidetes ASVs:
+Then we'll plot the 100 most abundant Bacteroidetes ASVs:
 
 ```{r,eval=T, warning=FALSE}
 TopASVs <- names(sort(taxa_sums(GPr), TRUE)[1:100])
@@ -937,6 +943,25 @@ Top <- prune_taxa(TopASVs, GPr)
 plot_bar(Top, fill="Genus") +
   geom_bar(aes(color=Genus, fill=Genus), stat="identity", position="stack")+
   facet_wrap(~Plastic, scales="free_x", nrow=1)
+```
+
+#### Another way to plot
+
+<i>Phyloseq</i> plotting is good but will only take you so far. You can export the tables from <i>Phyloseq</i> into normal data.frames or generate ggplot ready tables for more flexible plotting.
+
+```{r,eval=T, warning=FALSE}
+
+# Table by Phylum
+y1 <- tax_glom(carbom, taxrank = 'Phylum') # agglomerate taxa
+y1 <- psmelt(y1)
+
+# PLOT!
+
+ggplot(data=y1, aes(x=Sample, y=Abundance, fill=Phylum)) +
+  geom_bar(aes(), stat="identity", position="stack")+
+  facet_wrap(~Plastic, scales="free_x", nrow=1)
+
+
 ```
 
 # EXTRA STUFF
