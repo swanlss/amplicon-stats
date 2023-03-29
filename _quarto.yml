@@ -1,0 +1,4 @@
+project:
+  title: "Scripts"
+  type: website
+  output-dir: docs

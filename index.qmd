@@ -1,0 +1,966 @@
+---
+title: ""
+author: ""
+toc: true
+number-sections: false
+highlight-style: pygments
+format:
+  html:
+    theme: flatly
+output:
+  html_document:
+    toc: yes
+    df_print: paged
+editor: visual
+---
+
+# S8: Amplicon & Multivariate Data Analyses in R
+
+#### Swan LS Sow, Gonçalo Piedade, Harry Witte
+
+##### March 30, 2023
+
+# 0. Before we begin
+
+### 0.1 Overview, Dataset Introduction
+
+In this practical, you will learn how to perform basic statistical and multivariate analyses on a dataset generated from 16S amplicon sequences. All analyses will be based on OTU/ASV (.biom) tables (and their corresponding contextual/taxonomy data), that is the output generated from CASCABEL analyses (which you have learned in S5 previously) on the raw sequence data.
+
+All analyses will be done in RStudio, either in *ada* or on your own computer.
+
+You will learn:
+
+-   how to import .biom files into R
+-   dataframe/matrix wrangling to filter and remove unwanted/outlier data points
+-   statistically analyze the "clean" dataset with various multivariate analyses methods.
+
+The general workflow of amplicon data analyses looks something like this:
+
+![](/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/S8_AmpliconAnalysisRPt1/Images/Workflow.png){width="720"}
+
+The dataset we are using today was generated from samples in this paper by [Vaksmaa et.al. (2021)](https://www.frontiersin.org/articles/10.3389/fmicb.2021.673553/full)
+
+![](/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/S8_AmpliconAnalysisRPt1/Images/Vaksmaa_PlasticsPaper.png){width="300," height="300"}
+
+### 0.2 Prerequisites & Quick Guide on Setting up RStudio
+
+1.  If required, connect to NIOZ's VPN with the Forticlient Console
+
+2.  On a web browser, key in the following link: <http://ada.nioz.nl/8787>
+
+3.  Login with your NIOZ username (not email address) and server password (i.e. the same one you use to connect to *ada*)
+
+4.  R scripts and the files required for this analyses are all located in: /export/lv3/scratch/bioinformatics_workshop/S8_9\_MultivariateAnalysesInR
+
+5.  Please copy any script(s) and softlink the required data files to your own working directory for this workshop. You can create your working directory in:
+
+```{r,eval=F}
+/export/lv3/scratch/bioinformatics_workshop/Users/<yourusernamehere>
+```
+
+### 0.3 Setting up the environment
+
+<i>devtools</i> is a R package that allows you to download R Packages that are in development
+
+```{r,eval=F}
+if (!require("BiocManager", quietly = TRUE))
+install.packages("BiocManager")
+```
+
+<i>devtools</i> can be hard to install on linux and mac. Usually it requires some tools to be installed via terminal. For more info, see: [Installing Devtools in Ubuntu](https://stackoverflow.com/questions/48469005/install-devtools-package-in-ubuntu-vm)
+
+```{r,eval=F}
+library("devtools")
+```
+
+# 1. Commonly used R packages in amplicon/multivariate analyses
+
+The following packages are commonly used for community and multivariate analyses in R:
+
+### 1.1 Getting your abundance table into R
+
+<i>biom</i> is installed via github with devtools, and allows you to import .biom tables in R
+
+```{r,eval=F}
+BiocManager::install("biom")
+library(biom) 
+```
+
+<i>biom</i> might not be compatible with newer versions of R. If you get an error that package is not available, install <i>biomformat</i> instead (also via devtools)
+
+```{r,eval=T, echo = T, results = 'hide', message=FALSE, warning=FALSE}
+# BiocManager::install("biomformat")
+library(biomformat)
+```
+
+### 1.1 Packages for data wrangling & data cleanup
+
+This was comprehensively covered by Nina Dombrowski in the previous session. If you need a refresher please see the [<i>tidyverse</i> tutorial](https://ndombrowski.github.io/Tidyverse_tutorial/#some-background-information) she created
+
+```{r,eval=T, results='hide', message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+### 1.3 Packages for diversity & statistical analyses
+
+The <i>vegan</i> community ecology package is one of the oldest and most widely used package for descriptive community ecology. It has tools and functions for basic diversity analysis, ordination methods and dissimilarity analysis.
+
+<i>vegan</i> should already be installed in <i>ada</i>, but if you would like to install it locally, I encourage you to check out the installation options in [vegan's Github page](https://github.com/vegandevs/vegan)
+
+```{r,eval=T, echo = T, results = 'hide', message=FALSE, warning=FALSE}
+library(vegan)
+```
+
+Other packages we will use/recommend are:
+
+```{r,eval=T, echo = T, results = 'hide', message=FALSE, warning=FALSE}
+
+# Package with a set of tools to facilitate the import, storage, analysis, and graphical display of microbiome census data
+library(phyloseq)
+
+# Package with essential tools for the compositional approach to data analyses 
+library(coda.base)
+
+# Package with functions for the consistent analysis of compositional data proposed by J. Aitchison et.al.
+library(compositions)
+
+# Package for exploratory and Euclidean Methods in environmental science
+library(ade4)
+
+# Package for exploratory multivariate data analyses
+library(FactoMineR)
+
+# Package for ordination and multivariate analyses
+library(labdsv)
+
+# Package for spatial analysis, inference on diversity indices
+library(pgirmess)
+
+# Package with (too) many (to list all here) useful functions for data analysis, utility ops., computing sample size/power...
+library(Hmisc) # Harrell Miscellaneous
+
+# Package that treats zeros and non-detects in compositional data sets
+library(zCompositions)
+
+# Package for compuing pairwise PERMANOVA
+library(ecole)
+
+# Package for differential (relative) abundance analysis of high throughput sequencing count-compositional data
+library(ALDEx2)
+
+# Package for calculating taxonomic, functional, and phylogenetic diversity of ecological communities as Hill numbers
+library(hillR)
+
+# Pipe-Friendly Framework for Basic Statistical Tests
+library(rstatix)
+
+```
+
+### 1.4 Packages for plotting/visualizing statistical analyses
+
+We will use ggplot (of course!). This was also covered by Nina in an excellent [<i>ggplot</i> tutorial](https://ndombrowski.github.io/Ggplot_tutorial/#playground) in the previous session.
+
+```{r,eval=T, results='hide', message=FALSE, warning=FALSE}
+library(ggplot2)
+```
+
+Other handy packages are:
+
+```{r,eval=T, results='hide', message=FALSE, warning=FALSE}
+# Package to automatically Position Non-Overlapping Text Labels with 'ggplot2'
+library(ggrepel)
+
+# ggplot2 based publication ready plots
+library(ggpubr)
+
+# Package with easy-to-use functions to extract and visualize the output of multivariate data analyses e.g. PCA, CA, MCA,FAMD, MFA, HMFA
+library(factoextra)
+
+# Package to visualize correlation matrices
+library(corrplot)
+```
+
+You can checkout more detailed information and vignettes of a specific package:
+
+```{r,eval=F}
+browseVignettes("<nameofthepackage>")
+```
+
+# 2. Importing data used for analyses
+
+To view our OTU/ASV table, we will load the .biom file, which is the output file of CASCABEL.
+
+[BIOM](https://biom-format.org/index.html) stands for <b>B</b>iological <b>O</b>bservation <b>M</b>atrix and is a widely used file format for observation/abundance tables of biological samples in comparative -omics. The file stores both the observation data and corresponding metadata of the observation (e.g. taxonomic classification, metadata of a genome/gene family, pathway etc.)
+
+Usually we use the the .biom file with singletons already removed:
+
+```{r,eval=T}
+asvtab.biom <- read_biom("/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/NIOZ140_new_result/asvTable_noSingletons.biom") # change the file path to where your copy of the .biom file is actually located
+```
+
+### 2.1 Importing your ASV table into the R environment
+
+We'll then proceed to extract the species-site matrix from the .biom file we have loaded into the R environment, and convert it into a format (either a matrix/dataframe) that is easily manipulated in R.
+
+```{r,eval=T}
+asvtab.mat<-as.matrix(biom_data(asvtab.biom)) # OR
+# asvtab.df<-as.data.frame(biom_data(asvtab.biom))
+```
+
+The first thing we need to do is to check if our ASV table was imported into R properly, with all the samples and ASVs we would expect from our dataset. It isn't possible to import the ASV table directly as a dataframe, you will get the following error message:
+
+![](/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/S8_AmpliconAnalysisRPt1/Images/Biom_Df_ImportError.png)
+
+You could do this instead, then you could directly view the number of rows/columns (No. of ASVs/No. of Samples) in the <i>Environment</i> tab of your R studio console:
+
+```{r,eval=F}
+asvtab.df<-as.data.frame(as.matrix(biom_data(asvtab.biom)))
+```
+
+Or, you could just load your data as a matrix and use one of the following commands to check number of rows/columns and explore your dataset:
+
+```{r,eval=F}
+dim(asvtab.mat) # this gives you the number of rows/columns of your matrix
+str(asvtab.mat) # this gives you a complex display of the structure of your R object
+
+head(asvtab.mat) # this allows you to view the first 6 rows of your matrix
+tail(asvtab.mat) # this allows you to view the last 6 rows of your matrix
+```
+
+Questions:
+
+1\. How many samples are in this dataset?
+
+<details>
+
+<summary>Show answers</summary>
+
+```{r,eval=T}
+str(asvtab.mat)
+```
+
+There are 41 samples
+
+</details>
+
+2\. How many ASVs are in this dataset?
+
+<details>
+
+<summary>Show answers</summary>
+
+Same code as above, there are 51400 ASVs.
+
+</details>
+
+3\. What is the name of the first and last ASV in this dataset?
+
+<details>
+
+<summary>Show answers</summary>
+
+```{r,eval=T}
+asvtab.mat [1:3, 1:3]
+asvtab.mat [51399:51400, 1:3]
+```
+
+</details>
+
+### 2.2 Importing taxonomy and other contextual data
+
+As mentioned above, the biom file format is also capable of storing taxonomic classification for the ASVs or OTUs. We'll go ahead and extract the taxonomy for the ASVs as a R matrix:
+
+```{r,eval=T}
+taxo.mat <- as.matrix(observation_metadata(asvtab.biom))
+```
+
+You can use the same commands as you did for asvtab.mat to find out the number of ASVs and what the column names are in the taxonomy table.
+
+Questions:
+
+1\. How many ASVs are in the taxonomy table?
+
+<details>
+
+<summary>Show answers</summary>
+
+```{r,eval=T}
+str(taxo.mat)
+```
+
+</details>
+
+2\. How many taxonomic levels are there in the taxonomy table?
+
+<details>
+
+<summary>Show answers</summary>
+
+```{r,eval=T}
+head(taxo.mat)
+```
+
+</details>
+
+Notice that the columns names "taxonomy1,2,3..." are not very informative taxonomic ranks. let's change them with a vector of 7 classical taxonomic ranks (as per the common convention in Silva):
+
+```{r,eval=T}
+colnames(taxo.mat)<-c("Kingdom", "Phylum", "Class","Order", "Family", "Genus", "Species")
+```
+
+<details>
+
+<summary>Show the rest of the code:</summary>
+
+```{r,eval=T}
+head(taxo.mat)
+```
+
+</details>
+
+Lastly, we'll also read in a table with other metadata associated with this dataset. We want more information about the plastics that the microbes are associated with.
+
+```{r,eval=T}
+metad.N140 <- read.csv("/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/NIOZ140_new_result/Metadata_N140.csv")
+```
+
+Questions:
+
+1\. What types of metadata can we find from the metadata table?
+
+<details>
+
+<summary>Show answer:</summary>
+
+```{r,eval=T}
+head(metad.N140)
+```
+
+</details>
+
+2\. How many types of plastics are there?
+
+<details>
+
+<summary>Show answer:</summary>
+
+```{r,eval=T}
+metad.N140 |> distinct(Plastic) 
+```
+
+</details>
+
+# 3. Cleaning up data
+
+Before doing any statistical or multivariate analyses on our data, we need to clean up our data first to remove outliers, noise and artefacts
+
+If you haven't already done it above, load the tidyverse/dplyr library as this is handy for data manipulation (as we practiced from the previous session)
+
+```{r,eval=F}
+library(tidyverse)
+```
+
+First, let's remove ASVs with less than 10 reads in total (across all samples)
+
+```{r,eval=T}
+asvtab.mat.md10 <- asvtab.mat[rowSums(asvtab.mat) >= 10,]
+```
+
+Question: How many ASVs are left?
+
+<details>
+
+<summary>Show answer:</summary>
+
+```{r,eval=T}
+dim(asvtab.mat.md10)
+```
+
+</details>
+
+We also want to remove ASVs that are only present in one sample. To do this:
+
+```{r,eval=T}
+asvtab.mat.md10.pa <- decostand(asvtab.mat.md10, method = "pa", MARGIN = 2) # gives the presence (1) absence (0) of each OTUs/ASVs across samples
+
+asvtab.mat.md10.pa <- as.data.frame(asvtab.mat.md10.pa) # convert matrix to a dataframe (df) so I can use rowSums function
+
+asvtab.mat.md10.pa$sumrow <- rowSums(asvtab.mat.md10.pa, na.rm = TRUE) # sum up total samples where ASV was present in a new column called "sumrow"
+
+# Now I want to merge column "sumrow" to df asvtab.mat.md10, so asvtab.mat.md10 also needs to be a df
+asvtab.mat.md10 <- as.data.frame(asvtab.mat.md10) 
+
+# Merge sumrow to df asvtab.mat.md10 with cbind
+asvtab.mat.md10 <- cbind(asvtab.mat.md10, asvtab.mat.md10.pa$sumrow)
+
+# Then Use tidyverse (dplyr) to filter out sumrow less than or equal to one
+asvtab.mat.md10.md1s <- asvtab.mat.md10 |> filter(asvtab.mat.md10.pa$sumrow > 1)
+
+# Remove "asvtab.mat.md10.pa$sumrow" column (we don't need this for further analyses steps)
+asvtab.mat.md10.md1s <- asvtab.mat.md10.md1s[ -c(42) ]
+
+# Check dimensions of df to make sure merge went well:
+dim(asvtab.mat.md10.md1s)
+```
+
+Question: How many ASVs are left now?
+
+Next, we also want to:
+
+-   Remove unassigned ASVs
+-   Remove ASVs with only \* in taxonomy, even at Domain level
+-   Remove ASVs classified as Eukaryote
+-   Remove ASVs classified as Chloroplast and Mitochondria
+
+Can you do this on your own?
+
+<details>
+
+<summary>I'm not ready yet, show me the code:</summary>
+
+```{r,eval=T}
+# First merge ASV and taxonomy table before proceeding:
+taxo.mat <- as.data.frame(taxo.mat) # convert taxo table from matrix to df
+asvtab.mat.md10.md1s.taxo <- merge (asvtab.mat.md10.md1s, taxo.mat, by.x = 0, by.y = 0) # merge is inner by default
+# Start with 17239 after ASV table cleanup earlier, 49 variables after addition of 8 taxonomy columns
+
+# Remove ASVs where Kingdom is not Bacteria
+asvtab.mat.md10.md1s.taxo.clean <- asvtab.mat.md10.md1s.taxo |> filter(Kingdom == "Bacteria")
+# 17094 ASVs remain
+
+# Remove ASVs where Phylum is unassigned (i.e. 'NA')
+asvtab.mat.md10.md1s.taxo.clean <- asvtab.mat.md10.md1s.taxo.clean |> filter(Phylum != "NA")
+# 17069 ASVs remain
+
+# Remove 'Chloroplast' from Order
+asvtab.mat.md10.md1s.taxo.clean <- asvtab.mat.md10.md1s.taxo.clean |> filter(Order != "Chloroplast")
+# 16401 ASVs remain
+
+# Remove 'Mitochondria' from Family
+asvtab.mat.md10.md1s.taxo.clean <- asvtab.mat.md10.md1s.taxo.clean |> filter(Family != "Mitochondria")
+# 15100 ASVs remain
+```
+
+</details>
+
+Pop quiz: How many ASVs were not Bacteria? And which samples are classifed as plastic X?
+
+<details>
+
+<summary>Show answer:</summary>
+
+Number of ASVs that were not Bacteria:
+
+```{r,eval=T}
+17239-17094
+```
+
+Samples that are classified as plastic X:
+
+```{r,eval=T}
+metad.N140 |> filter(Plastic == "X")
+```
+
+</details>
+
+One more thing, we would also want to:
+
+-   Remove sample 'NIOZ140.NC', as this is the control
+-   Remove samples classified as unknown plastic X
+
+<details>
+
+<summary>I'm still not ready yet, show me the code:</summary>
+
+```{r,eval=T}
+# Separate clean ASV table from taxonomy, also remove control NIOZ140.NC
+asvtab.c <- asvtab.mat.md10.md1s.taxo.clean |> dplyr::select(!c(NIOZ140.NC, Kingdom, Phylum, Class, Order, Family, Genus, Species))
+
+# From the pop quiz above we know that the 2 samples classified as plastic X are NIOZ140.4.4 and NIOZ140.4.5
+asvtab.c.noX <- asvtab.c |> dplyr::select(!c(NIOZ140.4.4, NIOZ140.4.5))
+
+# Row.names (i.e. ASVId) got shifted to first column, assign them back as index column
+asvtab.c <- asvtab.c |> column_to_rownames(var = 'Row.names')
+# 40 samples, 15100 ASVs
+asvtab.c.noX <- asvtab.c.noX |> column_to_rownames(var = 'Row.names')
+# 38 samples, 15100 ASVs
+
+# Also create a separate clean taxonomy table for later on
+taxotab.c <- asvtab.mat.md10.md1s.taxo.clean |> dplyr::select(c(Row.names, Kingdom, Phylum, Class, Order, Family, Genus, Species))
+# Row.names (i.e. ASVId) got shifted to first column, assign them back as index column
+taxotab.c <- taxotab.c |> column_to_rownames(var = 'Row.names')
+```
+
+</details>
+
+The last thing you want to do in the clean-up step is to check that your datasets (ASV IDs, sample name/IDs and ASV IDs in taxonomy table) match one another. This will facilitate easier comparison and the downstream analyses steps.
+
+To do this, first save the co-occuring column and row names of all the dataframes you will be working with as separate R objects
+
+```{r,eval=T, results='hide'}
+colnames(asvtab.c) # colnames = SampleID
+rownames(asvtab.c) # rownames = ASVId
+rownames(taxotab.c) # rownames = ASVId
+colnames(metad.N140) # [1] "Sample_ID" "Sample" "Plastic"
+```
+
+To check that samples IDs in OTU table matches metadata table:
+
+```{r,eval=T}
+colnames(asvtab.c) %in% metad.N140$Sample_ID
+```
+
+From the comparison above, we know that all the sample IDs in the ASV table can be found in the metadata table, but are they in the same sequence?
+
+```{r,eval=T}
+# %in% only compares if the elements in the list are the same. Can be used with both lists and vectors
+# == compares if the elements AND the sequence in the list are the same. Can only be used with vectors
+colnames(asvtab.c) == metad.N140$Sample_ID
+```
+
+No match! SampleID sequence is right, but we forgot to remove control NIOZ140.NC from the contextual data table.
+
+```{r,eval=T}
+# Remove control NIOZ140.NC from the contextual data table
+metad.N140.c <- metad.N140 |> filter(Plastic != "NC")
+
+# Check again that Sample_ID in ASV table matches metadata table
+colnames(asvtab.c) == metad.N140.c$Sample_ID
+```
+
+Also remove plastic X from the contextual data table
+
+```{r,eval=T}
+metad.N140.c.noX <- metad.N140.c |> filter(Plastic != "X")
+```
+
+Finally, let's check that ASV Ids in ASV table matches the ones in the taxo table:
+
+```{r,eval=T, results='hide'}
+rownames(asvtab.c) == rownames(taxotab.c)
+```
+
+Toooooo many ASVs? Try:
+
+```{r,eval=T}
+summary(rownames(asvtab.c) == rownames(taxotab.c))
+```
+
+# 4. Data Standardization/Normalization & Transformation {#data-standardizationnormalization-transformation}
+
+Hot tips:
+
+-   transformations != normalizations
+-   normalizations recast the data in absolute terms, transformations do not.
+-   The results of a transformation-based analysis must be interpreted with respect to the chosen reference.
+
+### 4.1 Species x Site (aka ASV table) normalizations
+
+The decostand function in vegan can do many of the common standardization/normalization/transformation. To explore all the standardization/transformation methods available:
+
+```{r,eval=F}
+?decostand()
+```
+
+The first few methods described are more 'old school', but we will also explore methods deemed more suitable for compositional data analyses.
+
+Methods suitable for compositional data analyses will be mentioned in parantheses in the headers.
+
+Check out these papers for more details on why compositional data analyses methods, and a comprehensive walkthrough:
+
+a.  Gloor, G. B., et al. (2017). "Microbiome Datasets Are Compositional: And This Is Not Optional." Front Microbiol 8: 2224.
+b.  Quinn, T. P., et al. (2019). "A field guide for the compositional analysis of any-omics data." Gigascience 8(9).
+
+#### 4.1.1 Total Sum-Scaling (TSS)
+
+With this method, the function transforms the feature table into relative abundance by dividing the number of total reads of each sample. For more info, see this [link](https://rdrr.io/github/HuaZou/MyRtools/man/normalize-methods.html)
+
+```{r,eval=T, results='hide'}
+asvtab.c.StdByTotM2 <- decostand(asvtab.c.noX, method = "total", MARGIN = 2) # MARGIN: 1 = rows, and 2 = columns of x.
+```
+
+We want the results in percentage of OTUs/ASVs per sample, so:
+
+```{r,eval=T, results='hide'}
+asvtab.c.StdByTotM2.p <- asvtab.c.StdByTotM2*100
+```
+
+#### 4.1 Presence/Absence
+
+Self explanatory. Converts count of each ASV/OTU per sample to presence (1) or absence (0) across all samples.
+
+```{r,eval=F}
+decostand(asvtab.c, method = "pa", MARGIN = 2)
+```
+
+#### 4.2 Hellinger Transformation
+
+All values in a row are divided by the row sum. Then, the square root of the values are taken. Hellinger Transformations minimize effects of vastly different sample total abundances.
+
+```{r,eval=F}
+decostand(asvtab.c, method = "hellinger", MARGIN = 2)
+```
+
+#### 4.3 Square-root Transformation
+
+Also self explanatory. Takes the square root of each ASV/OTU and sample Here we are going to take the square-root transformation of our total sum-scaled sample ASV table earlier. The purpose is to downweighting the contribution of quantitatively dominant ASVs to the similarities/correlations between samples which will be calculated in the following sections.
+
+```{r,eval=T, results='hide'}
+asvtab.c.StdByTotM2.p.SqRt <- sqrt(asvtab.c.StdByTotM2.p)
+```
+
+### 4.5 Centred Log-ratio (CLR) Transformation \[Compositional\]
+
+CLR is the most common method of transformation used in compositional data analyses introduced by Aitchison (1986). It uses the geometric mean of the sample vector as its reference.
+
+Prior to doing a CLR transformation, zero count values, which are often prevalent especially in sparse data needs to be deleted, replaced or estimated. You can do that by considering the zero count values as point estimates. We'll use the 'cmultRepl' function in from the zCompositions package to do this, but there are also other packages and methods to do this \[example, Gonçalo?\]
+
+'cmultRepl' imputes zeros in compositional count data sets based on a Bayesian-multiplicative replacement (replace zeros with a small value)
+
+```{r,eval=F, results='hide'}
+asvtab.c.no0 <- cmultRepl(asvtab.c.noX, method = "GBM", output = "p-counts") # the ‘‘p-counts" option returns pseudo-counts instead of proportions
+```
+
+Now we can do the CLR transformation. We need sample as rows, asv as columns, and we convert it into a dataframe after that.
+
+```{r,eval=F, results='hide'}
+clr.no0<-as.data.frame(clr(t(asvtab.c.no0)))
+```
+
+Other log-ratio based transformation (that you can explore in your own time):
+
+-   additive log-ratio transformation (alr)
+-   multi-additive log-ratio \[malr\] transformations:
+    a.  inter-quartile log-ratio (iqlr) transformation,
+    b.  robust centered log-ratio (rclr)
+-   isometric log-ratio (ilr)
+
+# 5. Distance Metrices
+
+As shown in the flow chart above, before we ordinate our data in a chart, or perform multivariate analyses on it, we first need to define the resemblance (similarity/dissimilarity) between every pair of sample for all samples, which will result in a similarity/dissimilarity matrix.
+
+There are many different resemblance indices, some of the common ones are: Bray-Curtis, Euclidean, Gower, Morista, Cao, etc...
+
+For a comprehensive list of available indices:
+
+```{r,eval=F}
+    ?vegdist() # in package vegan
+    distanceMethodList # in package phyloseq
+```
+
+We'll use the Bray-Curtis index today, which is one of the most common:
+
+```{r,eval=T, results='hide'}
+asvtab.c.StdByTotM2.p.SqRt.bray <- vegdist(t(asvtab.c.StdByTotM2.p.SqRt), method = "bray")
+```
+
+There are also distance metrices that are more suitable for compositional analyses, such as the Aitchison distance matrix. We'll compute resemblance matrix from centre-log ratio transformed ASV table earlier. The Aitchison distance based resemblance matrix can be computed using the package <i>coda.base</i>:
+
+```{r,eval=F}
+clr.no0.aitd <- dist(clr.no0, method = "aitchison") # aitchison distance will not work unless zeros in ASV table is imputed!
+```
+
+# 6. Alpha diversity
+
+Most of our alpha diversity analyses are going to be done with functions from the following packages:
+
+```{r,eval=F}
+library(ALDEx2)
+library(hillR)
+library(ggpubr)
+library(rstatix)
+```
+
+First let's plot some good old rarefraction curves
+
+```{r,eval=T, warning=FALSE}
+rarecurve(t(asvtab.c), step=50, cex=0.5)
+```
+
+Now let's calculate the alpha diversity of the samples using Hill's Numbers:
+
+```{r,eval=T, warning=FALSE}
+alpha_diversity <- data.frame (
+  richness = hill_taxa(asvtab.c.StdByTotM2, q = 0, MARGIN = 2, base = exp(1)),
+  shannon  = hill_taxa(asvtab.c.StdByTotM2, q = 1, MARGIN = 2, base = exp(1)),
+  Simpson_inv = hill_taxa(asvtab.c.StdByTotM2, q = 2, MARGIN = 2, base = exp(1))
+  )
+alpha_diversity$Sample_ID <- row.names(alpha_diversity)
+
+alpha_diversity <- merge(alpha_diversity, metad.N140.c , by= "Sample_ID" , all=T)
+```
+
+```{r,eval=T, warning=FALSE}
+# Bar plot (bp)
+ggbarplot(alpha_diversity, x = "Sample_ID", y = "richness",
+                fill = "Plastic",               # change fill color by cyl
+                color = "white",            # Set bar border colors to white
+                palette = "jco",            # jco journal color palett. see ?ggpar
+                sort.val = "asc",           # Sort the value in ascending order
+                sort.by.groups = TRUE,      # Sort inside each group
+                x.text.angle = 90           # Rotate vertically x axis texts
+)
+
+ggbarplot(alpha_diversity, x = "Sample_ID", y = "Simpson_inv",
+          fill = "Plastic",               # change fill color by cyl
+          color = "white",            # Set bar border colors to white
+          palette = "jco",            # jco journal color palett. see ?ggpar
+          sort.val = "asc",           # Sort the value in ascending order
+          sort.by.groups = TRUE,      # Sort inside each group
+          x.text.angle = 90           # Rotate vertically x axis texts
+)
+
+ggbarplot(alpha_diversity, x = "Sample_ID", y = "shannon",
+          fill = "Plastic",               # change fill color by cyl
+          color = "white",            # Set bar border colors to white
+          palette = "jco",            # jco journal color palett. see ?ggpar
+          sort.val = "asc",           # Sort the value in ascending order
+          sort.by.groups = TRUE,      # Sort inside each group
+          x.text.angle = 90           # Rotate vertically x axis texts
+)
+
+# Perorm pairwise comparisons
+
+ggboxplot(alpha_diversity, x = "Plastic", y = "shannon",
+          color = "Plastic", palette = "jco",
+          add = "jitter")
+
+```
+
+# 7. Ordination Methods
+
+Ordination is representing data from a large number of sites as points in a multidimensional space (usually 2 or 3).
+
+Some of the ordination methods commonly used are: non-metric Multidimensional Scaling (nMDS), Principle Coordinate Analyses (PCoA), Correspondence Analyses (CA), Principle Component Analyses (PCA)...We'll explore nMDS and PCA today.
+
+### 7.1 nMDS
+
+The nMDS will be based on the Bray-Curtis resemblance matrix that we computed earlier:
+
+```{r,eval=T, results='hide'}
+(nmds<-metaMDS(asvtab.c.StdByTotM2.p.SqRt.bray, k = 2)) # where k is the number of dimensions 
+```
+
+To plot the nMDS:
+
+```{r,eval=T}
+plot(nmds$points, type = "n");text(nmds$points, label = rownames(nmds$points))
+```
+
+Now that's not a very pretty (or informative) plot, is it? Let's make it better :) To do that, we first need to save the coordinates of our nMDS plot:
+
+```{r,eval=T, results='hide'}
+nmds.coord <- as.data.frame(nmds$points)
+```
+
+Another useful value to take note of in an nMDS plot is its stress value. Usually we aim for a min/max value of \[INSERT STRESS VALUE RANGE HERE\]. The lower the better. If the stress values are high, you may need to increase the number of dimensions during the nMDS analyses, since this signifies that your plot is too complex to be analyzed in just 2 dimensions. To view/save the stress value of our nMDS plot from earlier:
+
+```{r,eval=T}
+nmds$stress
+```
+
+Now let's make a nicer nMDS plot with the data we have saved, with the plastic type of each sample represented by different colors. To do so, we'll first make our categorical variables as factors:
+
+```{r,eval=T, results='hide'}
+plastic.type <- factor(metad.N140.c.noX$Plastic[1:38], levels = c("PE", "PP", "PS"), labels=c('PE', 'PP', 'PS'))
+```
+
+Now let's make the plot:
+
+```{r,eval=T, warning=FALSE}
+nmds.pretty <- ggplot(nmds.coord, aes(x = MDS1, y = MDS2)) + 
+  geom_point(size = 4, aes(colour = plastic.type))+ 
+  theme(axis.text.y = element_text(colour = "black", size = 12, face = "bold"), 
+        axis.text.x = element_text(colour = "black", face = "bold", size = 12), 
+        legend.text = element_text(size = 12, colour ="black"), 
+        legend.position = c(0.12, 0.85), axis.title.y = element_text(face = "bold", size = 14), 
+        axis.title.x = element_text(face = "bold", size = 14, colour = "black"), 
+        legend.title = element_text(size = 14, colour = "black", face = "bold"), 
+        panel.background = element_blank(), panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+        legend.key=element_blank()) + 
+  labs(x = "NMDS1", colour = "Plastic Type", y = "NMDS2")  + 
+  scale_colour_manual(values=c("#0000FF", "#a62800", "#00ff00"))  +
+  annotate("text", x=1.7, y=1.5, size = 4, label = "2D stress: 0.1864") +
+  geom_label_repel(label=metad.N140.c.noX$Sample, label.size=NA, box.padding = 0.1, 
+                   fill = NA, min.segment.length = Inf) # set min.segment.length to inf to remove line pointers
+
+nmds.pretty
+```
+
+### 7.2 PCA \[Compositional\]
+
+Gloor et.al. (2017) recommends the use of Aitchison distance or the philr phylogenetic transform to define resemblance matrix. philr is based on binary partitions along an evolutionary tree and can be used as a UniFrac distance metric replacement, but only examines the relationships between chosen partitions. Aitchison distance is defined as the Euclidean distance between samples are clr transformation.
+
+Here we will compute our PCA based on the Aitchison distance, since we have already computed it in on our ASV table above.
+
+```{r,eval=F}
+clr.no0.aitd.pca <- prcomp(clr.no0.aitd) # from centre-log ratio transformed ASV table earlier 
+summary(clr.no0.aitd.pca)
+str(clr.no0.aitd.pca)
+```
+
+We can also visualize the eigenvalues/scree plot of the PCA. This shows the percentage of variances explained by each principle component.
+
+```{r,eval=F}
+clr.no0.aitd.pca.eig <- fviz_eig(clr.no0.aitd.pca) # need package factoextra
+clr.no0.aitd.pca.eig
+```
+
+Now let's plot the PCA, grouping points by plastic type (use factor 'plastic.type' from nMDS earlier):
+
+```{r,eval=F}
+pca.aitd <- fviz_pca_ind(clr.no0.aitd.pca, 
+             repel = TRUE,
+             geom = c("none"),
+             title = "NIOZ140 by Plastic Type (Aitchison)",
+             legend.position = "none",
+             invisible="quali") + # this removes the mean PCA point/centroid! (https://stackoverflow.com/questions/46977743/pca-analysis-remove-centroid)
+  geom_point(aes(color = plastic.type), size = 3) +
+  scale_shape_manual(values=c(8,8,8,8)) +
+  scale_color_manual(values=c("#0000FF", "#a62800", "#00ff00")) +
+  theme_classic() +
+  theme(axis.text=element_text(size=15)) + theme(axis.title = element_text(size = 18)) + 
+  theme(plot.title = element_text(size = 20, hjust = 0.5)) +
+  guides(shape=FALSE, color=guide_legend(title="Plastic Type", override.aes = list(shape = 16))) +
+  theme(legend.title = element_text(size = 16)) +
+  theme(legend.text = element_text(size = 15)) +
+  theme(legend.position = c(0.9, 0.9)) +
+  geom_label_repel(label=metad.N140.c$Sample, label.size=NA, box.padding = 0.1, 
+                   fill = NA, min.segment.length = Inf) # set min.segment.length to inf to remove line pointers. Needs package 'ggrepel'
+
+pca.aitd
+```
+
+### 7.3 PCoA
+
+```{r,eval=F}
+
+```
+
+# 8. Multivariate Comparisons
+
+### 8.1 Analysis of Variance (ANOVA - Parametric)
+
+### 8.2 Permutational Multivariate Analysis of Variance Using Distance Matrices (PERMANOVA)
+
+In a typical ANOVA you study the variance of a variable across categories. PERMANOVA allows you to do this but for distance matrix across clusters/categories/variables. It's non-parametrical and used more and more in microbial ecology. To learn more about the function:
+
+```{r,eval=F}
+?adonis()
+```
+
+An example of a one-way PERMANOVA with our dataset:
+
+```{r,eval=T}
+permanova<-adonis2((t(asvtab.c.StdByTotM2.p.SqRt)) ~ Plastic , data = metad.N140.c.noX, permutations = 999, method = "bray")
+permanova
+```
+
+It may also be helpful to make pair-wise comparisons among all pairs of the factor of interest (i.e. the different type of Plastics). Unfortunately the stock 'adonis2' function in <i>vegan</i> does not do this, so we will have to rely on a separate package. Google will point you to many options, for today we will rely on the package <i>ecole</i>
+
+```{r,eval=F}
+install.packages("remotes")
+remotes::install_github("phytomosaic/ecole")
+library(ecole)
+```
+
+```{r,eval=T, results = "hide", message=FALSE}
+permanova_pw <- permanova_pairwise(
+  t(asvtab.c.StdByTotM2.p.SqRt),
+  grp = metad.N140.c.noX$Plastic,
+  permutations = 999,
+  method = "bray",
+  padj = "bonferroni")
+```
+
+```{r,eval=T}
+permanova_pw
+```
+
+### 8.3 Test of homogeneity of dispersions (PERMDISP)
+
+-   betadisper function in vegan
+-   done with Bray-Curtis distances between samples
+-   can be used with any resemblance measure
+
+```{r,eval=T, warning=FALSE}
+# first define the factors:
+permd.grp <- factor(metad.N140.c.noX$Plastic) 
+
+permdisp <- betadisper(asvtab.c.StdByTotM2.p.SqRt.bray, permd.grp, 
+                       type = "centroid", bias.adjust = FALSE, sqrt.dist = FALSE, add = FALSE)
+
+# Calculate variation p-value based on traditional tables
+anova(permdisp)
+
+## Permutation test for the F-values
+permutest(permdisp, pairwise = TRUE, permutations = 999)
+
+```
+
+# 9. Phylogenetic Diversity
+
+Plot Abundances with Phyloseq
+
+```{r,eval=T, warning=FALSE}
+OTU = asvtab.c.StdByTotM2 |> as.matrix() |> otu_table(, taxa_are_rows = TRUE)
+TAX = taxo.mat |> as.matrix() |> tax_table()
+samples = metad.N140.c |> `rownames<-`( metad.N140.c$Sample_ID ) |> sample_data()
+
+carbom <- phyloseq(OTU, TAX, samples)
+
+plot_bar(carbom, fill = "Phylum")+
+  geom_bar(aes(color=Phylum, fill=Phylum), stat="identity", position="stack")
+
+plot_bar(carbom, fill="Phylum") +
+  geom_bar(aes(color=Phylum, fill=Phylum), stat="identity", position="stack")+
+  facet_wrap(~Plastic, scales="free_x", nrow=1)
+```
+
+Let's zoom into the Bacteriodetes:
+
+```{r,eval=T, warning=FALSE}
+GPr = subset_taxa(carbom, (Phylum %in% c("Bacteroidota")))
+
+plot_bar(GPr, fill="Family") +
+  geom_bar(aes(color=Family, fill=Family), stat="identity", position="stack")+
+  facet_wrap(~Plastic, scales="free_x", nrow=1)
+```
+
+We'll plot the 100 most abundant Bacteroidetes ASVs:
+
+```{r,eval=T, warning=FALSE}
+TopASVs <- names(sort(taxa_sums(GPr), TRUE)[1:100])
+
+Top <- prune_taxa(TopASVs, GPr)
+
+plot_bar(Top, fill="Genus") +
+  geom_bar(aes(color=Genus, fill=Genus), stat="identity", position="stack")+
+  facet_wrap(~Plastic, scales="free_x", nrow=1)
+```
+
+# EXTRA STUFF
+
+### 7.6 Analysis of Similarity (ANOSIM - Non Parametric)
+
+ANOSIM allows you to statistically test whether there are significant differences between groups of samples (e.g. different sites, treatment or sampling times)
+
+```{r,eval=F, results = "hide", message=FALSE}
+anosim <- with(metad.N140.c.noX, anosim(t(asvtab.c.StdByTotM2.p.SqRt.bray), Plastic))
+```
+
+```{r,eval=F}
+summary(anosim)
+```
+
+### SIMPER
+
+```{r,eval=F}
+metad.N140.c.noX.2 <- metad.N140.c.noX |> column_to_rownames(var = 'Sample_ID')
+simpr <- with(metad.N140.c.noX.2, simper(t(asvtab.c.noX), Plastic, permutations = 999)) # samples as rows, ASVs as columns
+```
+
+```{r,eval=F}
+simpr_sum <- summary(simpr)
+head(simpr_sum)
+```
