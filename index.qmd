@@ -38,11 +38,11 @@ You will learn:
 
 The general workflow of amplicon data analyses looks something like this:
 
-![](https://user-images.githubusercontent.com/25445935/228502290-e333587a-bfa4-4825-aec9-c9c409a40d15.png){width="720"}
+![](https://user-images.githubusercontent.com/25445935/228508141-aa824f33-28ee-4e7f-9cf9-e7c55f5636a2.png){width="720"}
 
 The dataset we are using today was generated from samples in this paper by [Vaksmaa et.al. (2021)](https://www.frontiersin.org/articles/10.3389/fmicb.2021.673553/full)
 
-![](https://user-images.githubusercontent.com/25445935/228501511-0ae252c5-48ed-438e-929a-bec4b33362b0.png){width="300," height="300"}
+![](https://user-images.githubusercontent.com/25445935/228508123-37a4d3e6-3d87-4fc9-bd3c-4f8b1d40f1f5.png){width="300," height="300"}
 
 ### 0.2 Prerequisites & Quick Guide on Setting up RStudio
 
@@ -211,7 +211,7 @@ asvtab.mat<-as.matrix(biom_data(asvtab.biom)) # OR
 
 The first thing we need to do is to check if our ASV table was imported into R properly, with all the samples and ASVs we would expect from our dataset. It isn't possible to import the ASV table directly as a dataframe, you will get the following error message:
 
-![](https://user-images.githubusercontent.com/25445935/228502546-32cc97f1-80b9-4b67-8a0f-1709e5182abb.png)
+![](https://user-images.githubusercontent.com/25445935/228508118-2823be17-8312-43d5-bdbf-2ba84ac95001.png)
 
 You could do this instead, then you could directly view the number of rows/columns (No. of ASVs/No. of Samples) in the <i>Environment</i> tab of your R studio console:
 
@@ -881,9 +881,9 @@ permanova_pw
 
 ### 8.3 Test of homogeneity of dispersions (PERMDISP)
 
--   betadisper function in vegan
--   done with Bray-Curtis distances between samples
--   can be used with any resemblance measure
+PERMDISP complements the PERMANOVA test by providing an indication of how much multivariate dispersion exists within a group of samples. 
+
+In <i>vegan</i>, we can do a PERMDISP with the 'betadisper' function. The test is typically done on Bray-Curtis resemblances between samples, though in theory the test can be used with any resemblance measure. 
 
 ```{r,eval=T, warning=FALSE}
 # first define the factors:

@@ -187,9 +187,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>statistically analyze the “clean” dataset with various multivariate and phylogenetic analyses methods.</li>
 </ul>
 <p>The general workflow of amplicon data analyses looks something like this:</p>
-<p><img src="https://user-images.githubusercontent.com/25445935/228502290-e333587a-bfa4-4825-aec9-c9c409a40d15.png" class="quarto-discovered-preview-image img-fluid" width="720"></p>
+<p><img src="https://user-images.githubusercontent.com/25445935/228508141-aa824f33-28ee-4e7f-9cf9-e7c55f5636a2.png" class="quarto-discovered-preview-image img-fluid" width="720"></p>
 <p>The dataset we are using today was generated from samples in this paper by <a href="https://www.frontiersin.org/articles/10.3389/fmicb.2021.673553/full">Vaksmaa et.al. (2021)</a></p>
-<p><img src="https://user-images.githubusercontent.com/25445935/228501511-0ae252c5-48ed-438e-929a-bec4b33362b0.png" height="300"></p>
+<p><img src="https://user-images.githubusercontent.com/25445935/228508123-37a4d3e6-3d87-4fc9-bd3c-4f8b1d40f1f5.png" height="300"></p>
 </section>
 <section id="prerequisites-quick-guide-on-setting-up-rstudio" class="level3">
 <h3 class="anchored" data-anchor-id="prerequisites-quick-guide-on-setting-up-rstudio">0.2 Prerequisites &amp; Quick Guide on Setting up RStudio</h3>
@@ -331,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># asvtab.df&lt;-as.data.frame(biom_data(asvtab.biom))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The first thing we need to do is to check if our ASV table was imported into R properly, with all the samples and ASVs we would expect from our dataset. It isn’t possible to import the ASV table directly as a dataframe, you will get the following error message:</p>
-<p><img src="https://user-images.githubusercontent.com/25445935/228502546-32cc97f1-80b9-4b67-8a0f-1709e5182abb.png" class="img-fluid"></p>
+<p><img src="https://user-images.githubusercontent.com/25445935/228508118-2823be17-8312-43d5-bdbf-2ba84ac95001.png" class="img-fluid"></p>
 <p>You could do this instead, then you could directly view the number of rows/columns (No.&nbsp;of ASVs/No.&nbsp;of Samples) in the <i>Environment</i> tab of your R studio console:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>asvtab.df<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">as.matrix</span>(<span class="fu">biom_data</span>(asvtab.biom)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -899,7 +899,7 @@ logical   15100 </code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>nmds<span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1864222</code></pre>
+<pre><code>[1] 0.1864228</code></pre>
 </div>
 </div>
 <p>Now let’s make a nicer nMDS plot with the data we have saved, with the plastic type of each sample represented by different colors. To do so, we’ll first make our categorical variables as factors:</p>
@@ -1020,9 +1020,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>permanova_pw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     pairs  SumOfSqs  F.Model         R2  pval p.adj
-1 PE vs PP 0.6474769 2.087657 0.07432648 0.004 0.012
+1 PE vs PP 0.6474769 2.087657 0.07432648 0.003 0.009
 2 PE vs PS 0.7340274 2.538368 0.08894580 0.001 0.003
-3 PP vs PS 0.4014957 1.234897 0.06420087 0.107 0.321</code></pre>
+3 PP vs PS 0.4014957 1.234897 0.06420087 0.115 0.345</code></pre>
 </div>
 </div>
 </section>
@@ -1060,14 +1060,14 @@ Number of permutations: 999
 
 Response: Distances
           Df   Sum Sq   Mean Sq      F N.Perm Pr(&gt;F)
-Groups     2 0.016442 0.0082209 1.9894    999  0.155
+Groups     2 0.016442 0.0082209 1.9894    999  0.141
 Residuals 35 0.144633 0.0041324                     
 
 Pairwise comparisons:
 (Observed p-value below diagonal, permuted p-value above diagonal)
         PE      PP    PS
-PE         0.08700 0.840
-PP 0.08578         0.097
+PE         0.06800 0.822
+PP 0.08578         0.114
 PS 0.83968 0.11186      </code></pre>
 </div>
 </div>
