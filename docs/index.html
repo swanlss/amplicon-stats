@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#s8-amplicon-multivariate-data-analyses-in-r" id="toc-s8-amplicon-multivariate-data-analyses-in-r" class="nav-link active" data-scroll-target="#s8-amplicon-multivariate-data-analyses-in-r">S8: Amplicon &amp; Multivariate Data Analyses in R</a></li>
+  <li><a href="#nioz-bioinformatics-workshop-2023" id="toc-nioz-bioinformatics-workshop-2023" class="nav-link active" data-scroll-target="#nioz-bioinformatics-workshop-2023">NIOZ Bioinformatics Workshop 2023</a></li>
+  <li><a href="#s8-amplicon-data-analyses-in-r" id="toc-s8-amplicon-data-analyses-in-r" class="nav-link" data-scroll-target="#s8-amplicon-data-analyses-in-r">S8: Amplicon Data Analyses in R</a></li>
   <li><a href="#before-we-begin" id="toc-before-we-begin" class="nav-link" data-scroll-target="#before-we-begin">0. Before we begin</a>
   <ul class="collapse">
   <li><a href="#overview-dataset-introduction" id="toc-overview-dataset-introduction" class="nav-link" data-scroll-target="#overview-dataset-introduction">0.1 Overview, Dataset Introduction</a></li>
@@ -147,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#permutational-multivariate-analysis-of-variance-using-distance-matrices-permanova" id="toc-permutational-multivariate-analysis-of-variance-using-distance-matrices-permanova" class="nav-link" data-scroll-target="#permutational-multivariate-analysis-of-variance-using-distance-matrices-permanova">8.2 Permutational Multivariate Analysis of Variance Using Distance Matrices (PERMANOVA)</a></li>
   <li><a href="#test-of-homogeneity-of-dispersions-permdisp" id="toc-test-of-homogeneity-of-dispersions-permdisp" class="nav-link" data-scroll-target="#test-of-homogeneity-of-dispersions-permdisp">8.3 Test of homogeneity of dispersions (PERMDISP)</a></li>
   </ul></li>
-  <li><a href="#phylogenetic-diversity" id="toc-phylogenetic-diversity" class="nav-link" data-scroll-target="#phylogenetic-diversity">9. Phylogenetic Diversity</a></li>
+  <li><a href="#exploring-phylogenetic-diversity---plotting-abundances-with-phyloseq" id="toc-exploring-phylogenetic-diversity---plotting-abundances-with-phyloseq" class="nav-link" data-scroll-target="#exploring-phylogenetic-diversity---plotting-abundances-with-phyloseq">9. Exploring Phylogenetic Diversity - Plotting Abundances with <i>Phyloseq</i></a></li>
   <li><a href="#extra-stuff" id="toc-extra-stuff" class="nav-link" data-scroll-target="#extra-stuff">EXTRA STUFF</a>
   <ul class="collapse">
   <li><a href="#analysis-of-similarity-anosim---non-parametric" id="toc-analysis-of-similarity-anosim---non-parametric" class="nav-link" data-scroll-target="#analysis-of-similarity-anosim---non-parametric">7.6 Analysis of Similarity (ANOSIM - Non Parametric)</a></li>
@@ -161,8 +162,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="s8-amplicon-multivariate-data-analyses-in-r" class="level1">
-<h1>S8: Amplicon &amp; Multivariate Data Analyses in R</h1>
+<section id="nioz-bioinformatics-workshop-2023" class="level2">
+<h2 class="anchored" data-anchor-id="nioz-bioinformatics-workshop-2023">NIOZ Bioinformatics Workshop 2023</h2>
+</section>
+<section id="s8-amplicon-data-analyses-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="s8-amplicon-data-analyses-in-r">S8: Amplicon Data Analyses in R</h2>
 <section id="swan-ls-sow-gonçalo-piedade-harry-witte" class="level4">
 <h4 class="anchored" data-anchor-id="swan-ls-sow-gonçalo-piedade-harry-witte">Swan LS Sow, Gonçalo Piedade, Harry Witte</h4>
 <section id="march-30-2023" class="level5">
@@ -180,12 +184,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>how to import .biom files into R</li>
 <li>dataframe/matrix wrangling to filter and remove unwanted/outlier data points</li>
-<li>statistically analyze the “clean” dataset with various multivariate analyses methods.</li>
+<li>statistically analyze the “clean” dataset with various multivariate and phylogenetic analyses methods.</li>
 </ul>
 <p>The general workflow of amplicon data analyses looks something like this:</p>
-<p><img src="./Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/S8_AmpliconAnalysisRPt1/Images/Workflow.png" class="quarto-discovered-preview-image img-fluid" width="720"></p>
+<p><img src="https://user-images.githubusercontent.com/25445935/228502290-e333587a-bfa4-4825-aec9-c9c409a40d15.png" class="quarto-discovered-preview-image img-fluid" width="720"></p>
 <p>The dataset we are using today was generated from samples in this paper by <a href="https://www.frontiersin.org/articles/10.3389/fmicb.2021.673553/full">Vaksmaa et.al. (2021)</a></p>
-<p><img src="./Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/S8_AmpliconAnalysisRPt1/Images/Vaksmaa_PlasticsPaper.png" height="300"></p>
+<p><img src="https://user-images.githubusercontent.com/25445935/228501511-0ae252c5-48ed-438e-929a-bec4b33362b0.png" height="300"></p>
 </section>
 <section id="prerequisites-quick-guide-on-setting-up-rstudio" class="level3">
 <h3 class="anchored" data-anchor-id="prerequisites-quick-guide-on-setting-up-rstudio">0.2 Prerequisites &amp; Quick Guide on Setting up RStudio</h3>
@@ -327,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># asvtab.df&lt;-as.data.frame(biom_data(asvtab.biom))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The first thing we need to do is to check if our ASV table was imported into R properly, with all the samples and ASVs we would expect from our dataset. It isn’t possible to import the ASV table directly as a dataframe, you will get the following error message:</p>
-<p><img src="./Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/S8_AmpliconAnalysisRPt1/Images/Biom_Df_ImportError.png" class="img-fluid"></p>
+<p><img src="https://user-images.githubusercontent.com/25445935/228502546-32cc97f1-80b9-4b67-8a0f-1709e5182abb.png" class="img-fluid"></p>
 <p>You could do this instead, then you could directly view the number of rows/columns (No.&nbsp;of ASVs/No.&nbsp;of Samples) in the <i>Environment</i> tab of your R studio console:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>asvtab.df<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">as.matrix</span>(<span class="fu">biom_data</span>(asvtab.biom)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -895,7 +899,7 @@ logical   15100 </code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>nmds<span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1864212</code></pre>
+<pre><code>[1] 0.1864222</code></pre>
 </div>
 </div>
 <p>Now let’s make a nicer nMDS plot with the data we have saved, with the plastic type of each sample represented by different colors. To do so, we’ll first make our categorical variables as factors:</p>
@@ -1016,9 +1020,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>permanova_pw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     pairs  SumOfSqs  F.Model         R2  pval p.adj
-1 PE vs PP 0.6474769 2.087657 0.07432648 0.001 0.003
+1 PE vs PP 0.6474769 2.087657 0.07432648 0.004 0.012
 2 PE vs PS 0.7340274 2.538368 0.08894580 0.001 0.003
-3 PP vs PS 0.4014957 1.234897 0.06420087 0.131 0.393</code></pre>
+3 PP vs PS 0.4014957 1.234897 0.06420087 0.107 0.321</code></pre>
 </div>
 </div>
 </section>
@@ -1056,22 +1060,24 @@ Number of permutations: 999
 
 Response: Distances
           Df   Sum Sq   Mean Sq      F N.Perm Pr(&gt;F)
-Groups     2 0.016442 0.0082209 1.9894    999  0.151
+Groups     2 0.016442 0.0082209 1.9894    999  0.155
 Residuals 35 0.144633 0.0041324                     
 
 Pairwise comparisons:
 (Observed p-value below diagonal, permuted p-value above diagonal)
         PE      PP    PS
-PE         0.07600 0.841
-PP 0.08578         0.100
+PE         0.08700 0.840
+PP 0.08578         0.097
 PS 0.83968 0.11186      </code></pre>
 </div>
 </div>
 </section>
 </section>
-<section id="phylogenetic-diversity" class="level1">
-<h1>9. Phylogenetic Diversity</h1>
-<p>Plot Abundances with Phyloseq</p>
+<section id="exploring-phylogenetic-diversity---plotting-abundances-with-phyloseq" class="level1">
+<h1>9. Exploring Phylogenetic Diversity - Plotting Abundances with <i>Phyloseq</i></h1>
+<p><i>Phyloseq</i> is a great package to visualize your data. It makes sure that your data tables are nicely matching. So it’s fool proof! Here we cover some absolute basics. The <i>Phyloseq</i> graphs use the same aesthetics as ggplot.</p>
+<section id="generate-your-phyloseq-objects-and-make-a-simple-plot" class="level4">
+<h4 class="anchored" data-anchor-id="generate-your-phyloseq-objects-and-make-a-simple-plot">Generate your <i>Phyloseq</i> objects and make a simple plot</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>OTU <span class="ot">=</span> asvtab.c.StdByTotM2 <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>() <span class="sc">|&gt;</span> <span class="fu">otu_table</span>(, <span class="at">taxa_are_rows =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>TAX <span class="ot">=</span> taxo.mat <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>() <span class="sc">|&gt;</span> <span class="fu">tax_table</span>()</span>
@@ -1091,6 +1097,9 @@ PS 0.83968 0.11186      </code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-72-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="zooming-into-specific-taxa" class="level4">
+<h4 class="anchored" data-anchor-id="zooming-into-specific-taxa">Zooming into specific taxa</h4>
 <p>Let’s zoom into the Bacteriodetes:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>GPr <span class="ot">=</span> <span class="fu">subset_taxa</span>(carbom, (Phylum <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Bacteroidota"</span>)))</span>
@@ -1102,7 +1111,7 @@ PS 0.83968 0.11186      </code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-73-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>We’ll plot the 100 most abundant Bacteroidetes ASVs:</p>
+<p>Then we’ll plot the 100 most abundant Bacteroidetes ASVs:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>TopASVs <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">taxa_sums</span>(GPr), <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>])</span>
 <span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1116,27 +1125,46 @@ PS 0.83968 0.11186      </code></pre>
 </div>
 </div>
 </section>
+<section id="another-way-to-plot" class="level4">
+<h4 class="anchored" data-anchor-id="another-way-to-plot">Another way to plot</h4>
+<p><i>Phyloseq</i> plotting is good but will only take you so far. You can export the tables from <i>Phyloseq</i> into normal data.frames or generate ggplot ready tables for more flexible plotting.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table by Phylum</span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">tax_glom</span>(carbom, <span class="at">taxrank =</span> <span class="st">'Phylum'</span>) <span class="co"># agglomerate taxa</span></span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">psmelt</span>(y1)</span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT!</span></span>
+<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-7"><a href="#cb102-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>y1, <span class="fu">aes</span>(<span class="at">x=</span>Sample, <span class="at">y=</span>Abundance, <span class="at">fill=</span>Phylum)) <span class="sc">+</span></span>
+<span id="cb102-8"><a href="#cb102-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(), <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb102-9"><a href="#cb102-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Plastic, <span class="at">scales=</span><span class="st">"free_x"</span>, <span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-75-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
 <section id="extra-stuff" class="level1">
 <h1>EXTRA STUFF</h1>
 <section id="analysis-of-similarity-anosim---non-parametric" class="level3">
 <h3 class="anchored" data-anchor-id="analysis-of-similarity-anosim---non-parametric">7.6 Analysis of Similarity (ANOSIM - Non Parametric)</h3>
 <p>ANOSIM allows you to statistically test whether there are significant differences between groups of samples (e.g.&nbsp;different sites, treatment or sampling times)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>anosim <span class="ot">&lt;-</span> <span class="fu">with</span>(metad.N140.c.noX, <span class="fu">anosim</span>(<span class="fu">t</span>(asvtab.c.StdByTotM2.p.SqRt.bray), Plastic))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>anosim <span class="ot">&lt;-</span> <span class="fu">with</span>(metad.N140.c.noX, <span class="fu">anosim</span>(<span class="fu">t</span>(asvtab.c.StdByTotM2.p.SqRt.bray), Plastic))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anosim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anosim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="simper" class="level3">
 <h3 class="anchored" data-anchor-id="simper">SIMPER</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>metad.N140.c.noX<span class="fl">.2</span> <span class="ot">&lt;-</span> metad.N140.c.noX <span class="sc">|&gt;</span> <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">'Sample_ID'</span>)</span>
-<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>simpr <span class="ot">&lt;-</span> <span class="fu">with</span>(metad.N140.c.noX<span class="fl">.2</span>, <span class="fu">simper</span>(<span class="fu">t</span>(asvtab.c.noX), Plastic, <span class="at">permutations =</span> <span class="dv">999</span>)) <span class="co"># samples as rows, ASVs as columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>metad.N140.c.noX<span class="fl">.2</span> <span class="ot">&lt;-</span> metad.N140.c.noX <span class="sc">|&gt;</span> <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">'Sample_ID'</span>)</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>simpr <span class="ot">&lt;-</span> <span class="fu">with</span>(metad.N140.c.noX<span class="fl">.2</span>, <span class="fu">simper</span>(<span class="fu">t</span>(asvtab.c.noX), Plastic, <span class="at">permutations =</span> <span class="dv">999</span>)) <span class="co"># samples as rows, ASVs as columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>simpr_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(simpr)</span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(simpr_sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>simpr_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(simpr)</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(simpr_sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
