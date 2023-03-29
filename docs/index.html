@@ -936,7 +936,7 @@ logical   15100 </code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>nmds<span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1864221</code></pre>
+<pre><code>[1] 0.1864213</code></pre>
 </div>
 </div>
 <p>Now let’s make a nicer nMDS plot with the data we have saved, with the plastic type of each sample represented by different colors. To do so, we’ll first make our categorical variables as factors:</p>
@@ -1056,9 +1056,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>permanova_pw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     pairs  SumOfSqs  F.Model         R2  pval p.adj
-1 PE vs PP 0.6474769 2.087657 0.07432648 0.003 0.009
+1 PE vs PP 0.6474769 2.087657 0.07432648 0.001 0.003
 2 PE vs PS 0.7340274 2.538368 0.08894580 0.001 0.003
-3 PP vs PS 0.4014957 1.234897 0.06420087 0.127 0.381</code></pre>
+3 PP vs PS 0.4014957 1.234897 0.06420087 0.118 0.354</code></pre>
 </div>
 </div>
 <p>From the PERMANOVA above, we can conclude that the bacterial communities are from the different plastic types are overall significantly different from each other. The pairwise PERMANOVA shows that plastic type PE contains a significantly different bacterial composition from PP and PS, but PP and PS does not differ significantly.</p>
@@ -1095,14 +1095,14 @@ Number of permutations: 999
 
 Response: Distances
           Df   Sum Sq   Mean Sq      F N.Perm Pr(&gt;F)
-Groups     2 0.016442 0.0082209 1.9894    999  0.147
+Groups     2 0.016442 0.0082209 1.9894    999  0.172
 Residuals 35 0.144633 0.0041324                     
 
 Pairwise comparisons:
 (Observed p-value below diagonal, permuted p-value above diagonal)
         PE      PP    PS
-PE         0.08900 0.828
-PP 0.08578         0.112
+PE         0.09800 0.846
+PP 0.08578         0.124
 PS 0.83968 0.11186      </code></pre>
 </div>
 </div>
