@@ -2,6 +2,7 @@
 title: ""
 author: ""
 toc: true
+toc-title: Quick Links
 number-sections: false
 highlight-style: pygments
 format:
@@ -14,21 +15,29 @@ output:
 editor: visual
 ---
 
-## NIOZ Bioinformatics Workshop 2023
+## NIOZ Bioinformatics Workshop 2023 {.unnumbered .unlisted}
 
-## S8: Amplicon Data Analyses in R
+### S8: Amplicon Data Analyses in R {.unnumbered .unlisted}
 
-#### Swan LS Sow, Gonçalo Piedade, Harry Witte
+#### Swan LS Sow \| Gonçalo Piedade \| Harry Witte {.unnumbered .unlisted}
 
-##### March 30, 2023
+##### March 30, 2023 {.unnumbered .unlisted}
 
 # 0. Before we begin
 
-### 0.1 Overview, Dataset Introduction
+### Overview & Dataset Introduction
 
 In this practical, you will learn how to perform basic statistical and multivariate analyses on a dataset generated from 16S amplicon sequences. All analyses will be based on OTU/ASV (.biom) tables (and their corresponding contextual/taxonomy data), that is the output generated from CASCABEL analyses (which you have learned in S5 previously) on the raw sequence data.
 
+The dataset we are using today was generated from samples in this nice paper by [Vaksmaa et.al. (2021)](https://www.frontiersin.org/articles/10.3389/fmicb.2021.673553/full)
+
+![](https://user-images.githubusercontent.com/25445935/228508123-37a4d3e6-3d87-4fc9-bd3c-4f8b1d40f1f5.png){width="300," height="300"}
+
 All analyses will be done in RStudio, either in *ada* or on your own computer.
+
+The general workflow of amplicon data analyses looks something like this:
+
+![](https://user-images.githubusercontent.com/25445935/228508141-aa824f33-28ee-4e7f-9cf9-e7c55f5636a2.png){width="720"}.
 
 You will learn:
 
@@ -36,15 +45,11 @@ You will learn:
 -   dataframe/matrix wrangling to filter and remove unwanted/outlier data points
 -   statistically analyze the "clean" dataset with various multivariate and phylogenetic analyses methods.
 
-The general workflow of amplicon data analyses looks something like this:
+Please bear in mind that these are just examples to illustrate how the analyses is done. Some of the analyses method may not be the best fit for the example dataset, for various reasons that we will not explore today as it is beyond the scope of this session. Do feel free to swap this up for your own data, and adapt the normalizations, transformations, resemblance measures, ordination methods etc. to suit.
 
-![](https://user-images.githubusercontent.com/25445935/228508141-aa824f33-28ee-4e7f-9cf9-e7c55f5636a2.png){width="720"}
+The workflow described above is by no means exhaustive - there is of course more aspects of the data that can be analyzed and methods that can be used, but we will be using that workflow as a guide for the purposes of this tutorial.
 
-The dataset we are using today was generated from samples in this paper by [Vaksmaa et.al. (2021)](https://www.frontiersin.org/articles/10.3389/fmicb.2021.673553/full)
-
-![](https://user-images.githubusercontent.com/25445935/228508123-37a4d3e6-3d87-4fc9-bd3c-4f8b1d40f1f5.png){width="300," height="300"}
-
-### 0.2 Prerequisites & Quick Guide on Setting up RStudio
+### Prerequisites & Quick Guide on Setting up RStudio
 
 1.  If required, connect to NIOZ's VPN with the Forticlient Console
 
@@ -52,7 +57,7 @@ The dataset we are using today was generated from samples in this paper by [Vaks
 
 3.  Login with your NIOZ username (not email address) and server password (i.e. the same one you use to connect to *ada*)
 
-4.  R scripts and the files required for this analyses are all located in: /export/lv3/scratch/bioinformatics_workshop/S8_9\_MultivariateAnalysesInR
+4.  The files required for this analyses are all located in: /export/lv3/scratch/bioinformatics_workshop/S8_9\_AmpliconAnalysesInR
 
 5.  Please copy any script(s) and softlink the required data files to your own working directory for this workshop. You can create your working directory in:
 
@@ -60,7 +65,7 @@ The dataset we are using today was generated from samples in this paper by [Vaks
 /export/lv3/scratch/bioinformatics_workshop/Users/<yourusernamehere>
 ```
 
-### 0.3 Setting up the environment
+### Setting up the environment
 
 <i>devtools</i> is a R package that allows you to download R Packages that are in development
 
@@ -97,7 +102,7 @@ library(biomformat)
 
 ### 1.1 Packages for data wrangling & data cleanup
 
-This was comprehensively covered by Nina Dombrowski in the previous session. If you need a refresher please see the [<i>tidyverse</i> tutorial](https://ndombrowski.github.io/Tidyverse_tutorial/#some-background-information) she created
+This was comprehensively covered by Nina Dombrowski in the previous session. If you need a refresher please see the [<i>tidyverse</i> tutorial](https://ndombrowski.github.io/Tidyverse_tutorial/#some-background-information) she created.
 
 ```{r,eval=T, results='hide', message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -197,7 +202,8 @@ To view our OTU/ASV table, we will load the .biom file, which is the output file
 Usually we use the the .biom file with singletons already removed:
 
 ```{r,eval=T}
-asvtab.biom <- read_biom("/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/NIOZ140_new_result/asvTable_noSingletons.biom") # change the file path to where your copy of the .biom file is actually located
+asvtab.biom <- read_biom("/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/NIOZ140_new_result/asvTable_noSingletons.biom") 
+# change the file path to where your copy of the .biom file is actually located
 ```
 
 ### 2.1 Importing your ASV table into the R environment
@@ -548,15 +554,16 @@ Toooooo many ASVs? Try:
 summary(rownames(asvtab.c) == rownames(taxotab.c))
 ```
 
-# 4. Data Standardization/Normalization & Transformation {#data-standardizationnormalization-transformation}
+# 4. Data Standardization, Normalization & Transformation
 
 Hot tips:
 
 -   transformations != normalizations
 -   normalizations recast the data in absolute terms, transformations do not.
+-   transformations downweight the contributions of quantitatively dominant ASVs to the similarities/correlations calculated between samples
 -   The results of a transformation-based analysis must be interpreted with respect to the chosen reference.
 
-### 4.1 Species x Site (aka ASV table) normalizations
+### 4.1 Species x Site (a.k.a. ASV table) normalizations
 
 The decostand function in vegan can do many of the common standardization/normalization/transformation. To explore all the standardization/transformation methods available:
 
@@ -605,7 +612,7 @@ decostand(asvtab.c, method = "hellinger", MARGIN = 2)
 
 #### 4.3 Square-root Transformation
 
-Also self explanatory. Takes the square root of each ASV/OTU and sample Here we are going to take the square-root transformation of our total sum-scaled sample ASV table earlier. The purpose is to downweighting the contribution of quantitatively dominant ASVs to the similarities/correlations between samples which will be calculated in the following sections.
+Also self explanatory. Takes the square root of each ASV/OTU and sample. Here we are going to take the square-root transformation of our total sum-scaled sample ASV table earlier. As explained above the purpose is to reduce the relative contribution of quantitatively dominant ASVs, which will influence the balance between contributions of dominant and less abundant species to the correlation matrix. Square root transformation is chosen here as it is a relatively mild form of transformation and there are more severe forms (e.g. Fourth root, Log X+1, P/A) which will more drastically increase the influence of less-abundant species.
 
 ```{r,eval=T, results='hide'}
 asvtab.c.StdByTotM2.p.SqRt <- sqrt(asvtab.c.StdByTotM2.p)
@@ -615,7 +622,7 @@ asvtab.c.StdByTotM2.p.SqRt <- sqrt(asvtab.c.StdByTotM2.p)
 
 CLR is the most common method of transformation used in compositional data analyses introduced by Aitchison (1986). It uses the geometric mean of the sample vector as its reference.
 
-Prior to doing a CLR transformation, zero count values, which are often prevalent especially in sparse data needs to be deleted, replaced or estimated. You can do that by considering the zero count values as point estimates. We'll use the 'cmultRepl' function in from the zCompositions package to do this, but there are also other packages and methods to do this \[example, Gonçalo?\]
+Prior to doing a CLR transformation, zero count values, which are often prevalent especially in sparse data needs to be deleted, replaced or estimated. You can do that by considering the zero count values as point estimates. We'll use the 'cmultRepl' function in from the zCompositions package to do this, but there are also other packages and methods to do this.
 
 'cmultRepl' imputes zeros in compositional count data sets based on a Bayesian-multiplicative replacement (replace zeros with a small value)
 
@@ -637,49 +644,21 @@ Other log-ratio based transformation (that you can explore in your own time):
     b.  robust centered log-ratio (rclr)
 -   isometric log-ratio (ilr)
 
-# 5. Distance Metrices
+# 5. Alpha diversity
 
-As shown in the flow chart above, before we ordinate our data in a chart, or perform multivariate analyses on it, we first need to define the resemblance (similarity/dissimilarity) between every pair of sample for all samples, which will result in a similarity/dissimilarity matrix.
+Alpha diversity metrices will give us an indication of how diverse each sample is, such as richness (no. of species observed in each site) and evenness (distribution of abundance across the species in a community/site).
 
-There are many different resemblance indices, some of the common ones are: Bray-Curtis, Euclidean, Gower, Morista, Cao, etc...
+## Sampling effort
 
-For a comprehensive list of available indices:
-
-```{r,eval=F}
-    ?vegdist() # in package vegan
-    distanceMethodList # in package phyloseq
-```
-
-We'll use the Bray-Curtis index today, which is one of the most common:
-
-```{r,eval=T, results='hide'}
-asvtab.c.StdByTotM2.p.SqRt.bray <- vegdist(t(asvtab.c.StdByTotM2.p.SqRt), method = "bray")
-```
-
-There are also distance metrices that are more suitable for compositional analyses, such as the Aitchison distance matrix. We'll compute resemblance matrix from centre-log ratio transformed ASV table earlier. The Aitchison distance based resemblance matrix can be computed using the package <i>coda.base</i>:
-
-```{r,eval=F}
-clr.no0.aitd <- dist(clr.no0, method = "aitchison") # aitchison distance will not work unless zeros in ASV table is imputed!
-```
-
-# 6. Alpha diversity
-
-Most of our alpha diversity analyses are going to be done with functions from the following packages:
-
-```{r,eval=F}
-library(ALDEx2)
-library(hillR)
-library(ggpubr)
-library(rstatix)
-```
-
-First let's plot some good old rarefraction curves
+First let's plot some good old rarefaction curves. You want your sampling effort to be approaching or on the plateau. These curves will tend to the "true" sample richness value.
 
 ```{r,eval=T, warning=FALSE}
 rarecurve(t(asvtab.c), step=50, cex=0.5)
 ```
 
-Now let's calculate the alpha diversity of the samples using Hill's Numbers:
+### Alpha diversity
+
+Now let's calculate the alpha diversity of the samples using Hill's Numbers. Because we are not yet reaching plateau for many samples, these results will be difficult to interpret.
 
 ```{r,eval=T, warning=FALSE}
 alpha_diversity <- data.frame (
@@ -690,6 +669,11 @@ alpha_diversity <- data.frame (
 alpha_diversity$Sample_ID <- row.names(alpha_diversity)
 
 alpha_diversity <- merge(alpha_diversity, metad.N140.c , by= "Sample_ID" , all=T)
+
+# We can calculate Simpson evenness by dividing the Simpson diversity by the richness
+
+alpha_diversity$eveness <- alpha_diversity$Simpson_inv/alpha_diversity$richness
+
 ```
 
 ```{r,eval=T, warning=FALSE}
@@ -703,7 +687,7 @@ ggbarplot(alpha_diversity, x = "Sample_ID", y = "richness",
                 x.text.angle = 90           # Rotate vertically x axis texts
 )
 
-ggbarplot(alpha_diversity, x = "Sample_ID", y = "Simpson_inv",
+ggbarplot(alpha_diversity, x = "Sample_ID", y = "eveness",
           fill = "Plastic",               # change fill color by cyl
           color = "white",            # Set bar border colors to white
           palette = "jco",            # jco journal color palett. see ?ggpar
@@ -721,7 +705,7 @@ ggbarplot(alpha_diversity, x = "Sample_ID", y = "shannon",
           x.text.angle = 90           # Rotate vertically x axis texts
 )
 
-# Perorm pairwise comparisons
+# Compare Shannon diversity between plastic groups with a boxplot:
 
 ggboxplot(alpha_diversity, x = "Plastic", y = "shannon",
           color = "Plastic", palette = "jco",
@@ -729,15 +713,74 @@ ggboxplot(alpha_diversity, x = "Plastic", y = "shannon",
 
 ```
 
+### Phylogenetic alpha Diversity
+
+If you have a tree for your OTUs/ASVs you can also calculate phylogeny diversity, i.e. if you have a community that is skewed towards a few branches of the tree or if it's evenly distributed across the tree.
+
+```{r eval=FALSE, warning=FALSE}
+
+library(picante)
+
+df.pd <- pd(t(otu_table_ps1), treefile_p1,include.root=F) # t(ou_table) transposes the table for use in picante and the tre file comes from the first code chunck we used to read tree file (see making a phyloseq object section).
+
+```
+
+# 6. Distance Metrices
+
+As shown in the flow chart above, before we ordinate our data in a chart, or perform multivariate analyses on it, we first need to define the resemblance (similarity/dissimilarity) between every pair of sample for all samples, which will result in a similarity/dissimilarity matrix.
+
+There are many different resemblance indices, some of the common ones are: Bray-Curtis, Euclidean, Gower, Morista, Cao, Jaccard, etc...
+
+For a comprehensive list of available indices:
+
+```{r,eval=F}
+    ?vegdist() # in package vegan
+    distanceMethodList # in package phyloseq
+```
+
+We'll use the Bray-Curtis index today, which is one of the most common:
+
+```{r,eval=T, results='hide'}
+asvtab.c.StdByTotM2.p.SqRt.bray <- vegdist(t(asvtab.c.StdByTotM2.p.SqRt), method = "bray")
+```
+
+If your dataset only has a simple species list, with only presence or absence of each species, you could use the Jaccard matrix:
+
+```{r,eval=F}
+asvtab.c.StdByTotM2.p.SqRt.jac <- vegdist(t(asvtab.c.StdByTotM2.p), method = "bray")
+```
+
+There are also distance metrices that are more suitable for compositional analyses, such as the Aitchison distance matrix. We'll compute resemblance matrix from centre-log ratio transformed ASV table earlier. The Aitchison distance based resemblance matrix can be computed using the package <i>coda.base</i>:
+
+```{r,eval=F}
+clr.no0.aitd <- dist(clr.no0, method = "aitchison") # aitchison distance will not work unless zeros in ASV table is imputed!
+```
+
 # 7. Ordination Methods
 
-Ordination is representing data from a large number of sites as points in a multidimensional space (usually 2 or 3).
+Ordination is representing data from a large number of sites as points in a multidimensional space.
 
-Some of the ordination methods commonly used are: non-metric Multidimensional Scaling (nMDS), Principle Coordinate Analyses (PCoA), Correspondence Analyses (CA), Principle Component Analyses (PCA)...We'll explore nMDS and PCA today.
+Some of the ordination methods commonly used are:
+
+Older-school:
+
+-   non-metric Multidimensional Scaling (nMDS)
+
+-   Principle Coordinate Analyses (PCoA)
+
+-   Correspondence Analyses (CA)
+
+-   Principle Component Analyses (PCA)
+
+Newer-school:
+
+-   Uniform Manifold Approximation and Projection for Dimension Reduction ([UMAP](https://cran.r-project.org/web/packages/umap/vignettes/umap.html))
+
+-   T-Distributed Stochastic Neighbor Embedding ([t-SNE](https://cran.r-project.org/web/packages/tsne/index.html))
 
 ### 7.1 nMDS
 
-The nMDS will be based on the Bray-Curtis resemblance matrix that we computed earlier:
+nMDS constrains a distance matrix into a given number of dimensions, and aims to represent samples as points in a low dimensional space (usually 2 or 3). The closer the points are to each other the more similar thier community composition. You can use nMDS on a wide range of data types and resemblances. The nMDS we will build will be based on the Bray-Curtis resemblance matrix that we computed earlier:
 
 ```{r,eval=T, results='hide'}
 (nmds<-metaMDS(asvtab.c.StdByTotM2.p.SqRt.bray, k = 2)) # where k is the number of dimensions 
@@ -755,7 +798,7 @@ Now that's not a very pretty (or informative) plot, is it? Let's make it better 
 nmds.coord <- as.data.frame(nmds$points)
 ```
 
-Another useful value to take note of in an nMDS plot is its stress value. Usually we aim for a min/max value of \[INSERT STRESS VALUE RANGE HERE\]. The lower the better. If the stress values are high, you may need to increase the number of dimensions during the nMDS analyses, since this signifies that your plot is too complex to be analyzed in just 2 dimensions. To view/save the stress value of our nMDS plot from earlier:
+Another useful value to take note of in an nMDS plot is its stress value. Stress values actually measure the values in the Shepard plot and gives an indication of how faithfully the high dimension relationships are represented in low dimensional ordinations. Usually we aim for a value of \< 0.1. The lower the better. Anything above 0.2-0.3 signifies unreliability. If the stress values are high, you may need to increase the number of dimensions during the nMDS analyses, since this signifies that your plot is too complex to be analyzed in just 2 dimensions. To view/save the stress value of our nMDS plot from earlier:
 
 ```{r,eval=T}
 nmds$stress
@@ -789,11 +832,13 @@ nmds.pretty <- ggplot(nmds.coord, aes(x = MDS1, y = MDS2)) +
 nmds.pretty
 ```
 
-### 7.2 PCA \[Compositional\]
+### 7.2 PCA (Compositional)
 
-Gloor et.al. (2017) recommends the use of Aitchison distance or the philr phylogenetic transform to define resemblance matrix. philr is based on binary partitions along an evolutionary tree and can be used as a UniFrac distance metric replacement, but only examines the relationships between chosen partitions. Aitchison distance is defined as the Euclidean distance between samples are clr transformation.
+PCA is a projection of points in high dimensional variable space onto axes that minimizes residual variation in Euclidean space. It is typically used on datasets where there are not many zeros, so traditionally it was not considered very suitable for many biological data, though this has started to change in the recent years with the push for the compositional approach to data analyses. It is recommended to do your research on whether this is suitable for your dataset before proceeding!
 
-Here we will compute our PCA based on the Aitchison distance, since we have already computed it in on our ASV table above.
+Gloor et.al. (2017) recommends the use of Aitchison distance or the philr phylogenetic transform to define resemblance matrix. philr is based on binary partitions along an evolutionary tree and can be used as a UniFrac distance metric replacement, but only examines the relationships between chosen partitions. Aitchison distance is defined as the Euclidean distance between samples that are clr transformed.
+
+Here we will compute our PCA based on the Aitchison distance, which we have already computed above.
 
 ```{r,eval=F}
 clr.no0.aitd.pca <- prcomp(clr.no0.aitd) # from centre-log ratio transformed ASV table earlier 
@@ -808,44 +853,45 @@ clr.no0.aitd.pca.eig <- fviz_eig(clr.no0.aitd.pca) # need package factoextra
 clr.no0.aitd.pca.eig
 ```
 
-Now let's plot the PCA, grouping points by plastic type (use factor 'plastic.type' from nMDS earlier):
+To plot the PCA:
 
 ```{r,eval=F}
-pca.aitd <- fviz_pca_ind(clr.no0.aitd.pca, 
+pca.aitd <- fviz_pca_ind(clr.no0.aitd.pca , 
              repel = TRUE,
-             geom = c("none"),
-             title = "NIOZ140 by Plastic Type (Aitchison)",
-             legend.position = "none",
-             invisible="quali") + # this removes the mean PCA point/centroid! (https://stackoverflow.com/questions/46977743/pca-analysis-remove-centroid)
-  geom_point(aes(color = plastic.type), size = 3) +
-  scale_shape_manual(values=c(8,8,8,8)) +
-  scale_color_manual(values=c("#0000FF", "#a62800", "#00ff00")) +
-  theme_classic() +
-  theme(axis.text=element_text(size=15)) + theme(axis.title = element_text(size = 18)) + 
-  theme(plot.title = element_text(size = 20, hjust = 0.5)) +
-  guides(shape=FALSE, color=guide_legend(title="Plastic Type", override.aes = list(shape = 16))) +
-  theme(legend.title = element_text(size = 16)) +
-  theme(legend.text = element_text(size = 15)) +
-  theme(legend.position = c(0.9, 0.9)) +
-  geom_label_repel(label=metad.N140.c$Sample, label.size=NA, box.padding = 0.1, 
-                   fill = NA, min.segment.length = Inf) # set min.segment.length to inf to remove line pointers. Needs package 'ggrepel'
-
+             geom = "point")
 pca.aitd
 ```
 
 ### 7.3 PCoA
 
-```{r,eval=F}
+PCoA is similar to nMDS, except that it approximates eigenvectors based on the resemblance matrix. It is a projection of points onto axes that minimizes residual variation in the space of the resemblance measure. It is also very flexible and accepts any symmetrical resemblance matrix.
 
+To learn more about the function in <i>vegan</i>:
+
+```{r,eval=F}
+?wcmdscale() # called weighted but here we do not weight our samples, so it's a normal PCoA
+```
+
+A simple script to plot PCoA:
+
+```{r,eval=F}
+pcoa<-wcmdscale(asvtab.c.StdByTotM2.p.SqRt.bray, eig = TRUE)
+plot(pcoa)
+
+pcoa.coords <- pcoa$points # samples coordinates across eigenvectors
+
+pcoa.coords <- pcoa$eig # eigen values (quantity of information on each eigenvector)
+
+(pcoa$eig/sum(pcoa$eig))*100 # % eigen values (quantity of information on each eigenvector)
 ```
 
 # 8. Multivariate Comparisons
 
-### 8.1 Analysis of Variance (ANOVA - Parametric)
-
 ### 8.2 Permutational Multivariate Analysis of Variance Using Distance Matrices (PERMANOVA)
 
-In a typical ANOVA you study the variance of a variable across categories. PERMANOVA allows you to do this but for distance matrix across clusters/categories/variables. It's non-parametrical and used more and more in microbial ecology. To learn more about the function:
+You have made your ordination plots, which show that there is some sort of grouping of your samples and variation between the groups. But how much variation is there really? Which pairs of groups (communities) are more similar to different to each other? Are they statistically significant?
+
+In a typical Analysis of Variance (ANOVA) you study the variance of a variable across categories. PERMANOVA allows you to do this but for distance matrices across clusters/categories/variables or groups of samples. It's non-parametrical and used more and more in microbial ecology. To learn more about the function:
 
 ```{r,eval=F}
 ?adonis()
@@ -879,11 +925,15 @@ permanova_pw <- permanova_pairwise(
 permanova_pw
 ```
 
+From the PERMANOVA above, we can conclude that the bacterial communities are from the different plastic types are overall significantly different from each other. The pairwise PERMANOVA shows that plastic type PE contains a significantly different bacterial composition from PP and PS, but PP and PS does not differ significantly.
+
+If you have more complex experimental designs or datasets, the interactions between the effects/factors can also be tested and teased apart with 2-way (or higher) crossed or nested PERMANOVA tests.
+
 ### 8.3 Test of homogeneity of dispersions (PERMDISP)
 
-PERMDISP complements the PERMANOVA test by providing an indication of how much multivariate dispersion exists within a group of samples. 
+It is often easy to confound the differences between groups of samples and dispersion within the groups itself. Here, PERMDISP complements the PERMANOVA test by providing an indication of how much multivariate dispersion exists within a group of samples.
 
-In <i>vegan</i>, we can do a PERMDISP with the 'betadisper' function. The test is typically done on Bray-Curtis resemblances between samples, though in theory the test can be used with any resemblance measure. 
+In <i>vegan</i>, we can do a PERMDISP with the 'betadisper' function. The test is typically done on Bray-Curtis resemblances between samples, though in theory the test can be used with any resemblance measure.
 
 ```{r,eval=T, warning=FALSE}
 # first define the factors:
@@ -900,7 +950,25 @@ permutest(permdisp, pairwise = TRUE, permutations = 999)
 
 ```
 
-# 9. Exploring Phylogenetic Diversity - Plotting Abundances with <i>Phyloseq</i>
+Based on the PERMDISP analyses above, the H~0~ hypothesis (of no difference in dispersion of the groups) is not rejected (p=0.152), so the significant PERMANOVA is caused by difference in plastic type (not by dispersion).
+
+### 8.4 Analysis of Similarity (ANOSIM - Non Parametric)
+
+ANOSIM also allows you to statistically test whether there are significant differences between groups of samples (e.g. different sites, treatment or sampling times). It is comparable to PERMANOVA, although you can only do up to two-way experimental designs. ANOSIM also ranks values in the resemblance matrix prior to the analyses. As compared to PERMANOVA, the ANOSIM R-statistic is scaled to range only between -1 and +1, which may be useful as an absolute measure of strength of differences between groups.
+
+```{r,eval=F, results = "hide", message=FALSE}
+anosim <- with(metad.N140.c.noX, anosim(t(asvtab.c.StdByTotM2.p.SqRt.bray), Plastic))
+```
+
+```{r,eval=F}
+summary(anosim)
+```
+
+# 9. Exploring Phylogenetic Diversity
+
+Finally, we would also like to know what is the distribution of the different phyla in the bacterial communities, and how this distribution may vary between the different plastic types.
+
+#### Plotting Abundances with <i>Phyloseq</i>
 
 <i>Phyloseq</i> is a great package to visualize your data. It makes sure that your data tables are nicely matching. So it's fool proof! Here we cover some absolute basics. The <i>Phyloseq</i> graphs use the same aesthetics as ggplot.
 
@@ -964,28 +1032,20 @@ ggplot(data=y1, aes(x=Sample, y=Abundance, fill=Phylum)) +
 
 ```
 
-# EXTRA STUFF
+### More interesting materials and references
 
-### 7.6 Analysis of Similarity (ANOSIM - Non Parametric)
+1.  Learn R multivariate data analysis from one of Vegan's developers: [Video1](https://www.youtube.com/live/tVnnG7mFeqA?feature=share) \| [Video 2](https://www.youtube.com/live/PR1B_JkO49s?feature=share)
 
-ANOSIM allows you to statistically test whether there are significant differences between groups of samples (e.g. different sites, treatment or sampling times)
+2.  [Riffomonas Project microbiome analysis in R](https://www.youtube.com/watch?v=D6CunpqF04E&list=PLmNrK_nkqBpIIRdQTS2aOs5OD7vVMKWAi&ab_channel=RiffomonasProject)
 
-```{r,eval=F, results = "hide", message=FALSE}
-anosim <- with(metad.N140.c.noX, anosim(t(asvtab.c.StdByTotM2.p.SqRt.bray), Plastic))
+### Session Info
+
+<details>
+
+<summary>Show full session info</summary>
+
+```{r,eval=T, warning=FALSE}
+sessionInfo()
 ```
 
-```{r,eval=F}
-summary(anosim)
-```
-
-### SIMPER
-
-```{r,eval=F}
-metad.N140.c.noX.2 <- metad.N140.c.noX |> column_to_rownames(var = 'Sample_ID')
-simpr <- with(metad.N140.c.noX.2, simper(t(asvtab.c.noX), Plastic, permutations = 999)) # samples as rows, ASVs as columns
-```
-
-```{r,eval=F}
-simpr_sum <- summary(simpr)
-head(simpr_sum)
-```
+</details>

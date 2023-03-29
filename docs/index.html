@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.294">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,10 +18,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,13 +47,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -105,16 +134,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Quick Links</h2>
    
   <ul>
-  <li><a href="#nioz-bioinformatics-workshop-2023" id="toc-nioz-bioinformatics-workshop-2023" class="nav-link active" data-scroll-target="#nioz-bioinformatics-workshop-2023">NIOZ Bioinformatics Workshop 2023</a></li>
-  <li><a href="#s8-amplicon-data-analyses-in-r" id="toc-s8-amplicon-data-analyses-in-r" class="nav-link" data-scroll-target="#s8-amplicon-data-analyses-in-r">S8: Amplicon Data Analyses in R</a></li>
-  <li><a href="#before-we-begin" id="toc-before-we-begin" class="nav-link" data-scroll-target="#before-we-begin">0. Before we begin</a>
+  <li><a href="#before-we-begin" id="toc-before-we-begin" class="nav-link active" data-scroll-target="#before-we-begin">0. Before we begin</a>
   <ul class="collapse">
-  <li><a href="#overview-dataset-introduction" id="toc-overview-dataset-introduction" class="nav-link" data-scroll-target="#overview-dataset-introduction">0.1 Overview, Dataset Introduction</a></li>
-  <li><a href="#prerequisites-quick-guide-on-setting-up-rstudio" id="toc-prerequisites-quick-guide-on-setting-up-rstudio" class="nav-link" data-scroll-target="#prerequisites-quick-guide-on-setting-up-rstudio">0.2 Prerequisites &amp; Quick Guide on Setting up RStudio</a></li>
-  <li><a href="#setting-up-the-environment" id="toc-setting-up-the-environment" class="nav-link" data-scroll-target="#setting-up-the-environment">0.3 Setting up the environment</a></li>
+  <li><a href="#overview-dataset-introduction" id="toc-overview-dataset-introduction" class="nav-link" data-scroll-target="#overview-dataset-introduction">Overview &amp; Dataset Introduction</a></li>
+  <li><a href="#prerequisites-quick-guide-on-setting-up-rstudio" id="toc-prerequisites-quick-guide-on-setting-up-rstudio" class="nav-link" data-scroll-target="#prerequisites-quick-guide-on-setting-up-rstudio">Prerequisites &amp; Quick Guide on Setting up RStudio</a></li>
+  <li><a href="#setting-up-the-environment" id="toc-setting-up-the-environment" class="nav-link" data-scroll-target="#setting-up-the-environment">Setting up the environment</a></li>
   </ul></li>
   <li><a href="#commonly-used-r-packages-in-ampliconmultivariate-analyses" id="toc-commonly-used-r-packages-in-ampliconmultivariate-analyses" class="nav-link" data-scroll-target="#commonly-used-r-packages-in-ampliconmultivariate-analyses">1. Commonly used R packages in amplicon/multivariate analyses</a>
   <ul class="collapse">
@@ -129,30 +156,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#importing-taxonomy-and-other-contextual-data" id="toc-importing-taxonomy-and-other-contextual-data" class="nav-link" data-scroll-target="#importing-taxonomy-and-other-contextual-data">2.2 Importing taxonomy and other contextual data</a></li>
   </ul></li>
   <li><a href="#cleaning-up-data" id="toc-cleaning-up-data" class="nav-link" data-scroll-target="#cleaning-up-data">3. Cleaning up data</a></li>
-  <li><a href="#data-standardizationnormalization-transformation" id="toc-data-standardizationnormalization-transformation" class="nav-link" data-scroll-target="#data-standardizationnormalization-transformation">4. Data Standardization/Normalization &amp; Transformation</a>
+  <li><a href="#data-standardization-normalization-transformation" id="toc-data-standardization-normalization-transformation" class="nav-link" data-scroll-target="#data-standardization-normalization-transformation">4. Data Standardization, Normalization &amp; Transformation</a>
   <ul class="collapse">
-  <li><a href="#species-x-site-aka-asv-table-normalizations" id="toc-species-x-site-aka-asv-table-normalizations" class="nav-link" data-scroll-target="#species-x-site-aka-asv-table-normalizations">4.1 Species x Site (aka ASV table) normalizations</a></li>
+  <li><a href="#species-x-site-a.k.a.-asv-table-normalizations" id="toc-species-x-site-a.k.a.-asv-table-normalizations" class="nav-link" data-scroll-target="#species-x-site-a.k.a.-asv-table-normalizations">4.1 Species x Site (a.k.a. ASV table) normalizations</a></li>
   <li><a href="#centred-log-ratio-clr-transformation-compositional" id="toc-centred-log-ratio-clr-transformation-compositional" class="nav-link" data-scroll-target="#centred-log-ratio-clr-transformation-compositional">4.5 Centred Log-ratio (CLR) Transformation [Compositional]</a></li>
   </ul></li>
-  <li><a href="#distance-metrices" id="toc-distance-metrices" class="nav-link" data-scroll-target="#distance-metrices">5. Distance Metrices</a></li>
-  <li><a href="#alpha-diversity" id="toc-alpha-diversity" class="nav-link" data-scroll-target="#alpha-diversity">6. Alpha diversity</a></li>
+  <li><a href="#alpha-diversity" id="toc-alpha-diversity" class="nav-link" data-scroll-target="#alpha-diversity">5. Alpha diversity</a>
+  <ul class="collapse">
+  <li><a href="#sampling-effort" id="toc-sampling-effort" class="nav-link" data-scroll-target="#sampling-effort">Sampling effort</a>
+  <ul class="collapse">
+  <li><a href="#alpha-diversity-1" id="toc-alpha-diversity-1" class="nav-link" data-scroll-target="#alpha-diversity-1">Alpha diversity</a></li>
+  <li><a href="#phylogenetic-alpha-diversity" id="toc-phylogenetic-alpha-diversity" class="nav-link" data-scroll-target="#phylogenetic-alpha-diversity">Phylogenetic alpha Diversity</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#distance-metrices" id="toc-distance-metrices" class="nav-link" data-scroll-target="#distance-metrices">6. Distance Metrices</a></li>
   <li><a href="#ordination-methods" id="toc-ordination-methods" class="nav-link" data-scroll-target="#ordination-methods">7. Ordination Methods</a>
   <ul class="collapse">
   <li><a href="#nmds" id="toc-nmds" class="nav-link" data-scroll-target="#nmds">7.1 nMDS</a></li>
-  <li><a href="#pca-compositional" id="toc-pca-compositional" class="nav-link" data-scroll-target="#pca-compositional">7.2 PCA [Compositional]</a></li>
+  <li><a href="#pca-compositional" id="toc-pca-compositional" class="nav-link" data-scroll-target="#pca-compositional">7.2 PCA (Compositional)</a></li>
   <li><a href="#pcoa" id="toc-pcoa" class="nav-link" data-scroll-target="#pcoa">7.3 PCoA</a></li>
   </ul></li>
   <li><a href="#multivariate-comparisons" id="toc-multivariate-comparisons" class="nav-link" data-scroll-target="#multivariate-comparisons">8. Multivariate Comparisons</a>
   <ul class="collapse">
-  <li><a href="#analysis-of-variance-anova---parametric" id="toc-analysis-of-variance-anova---parametric" class="nav-link" data-scroll-target="#analysis-of-variance-anova---parametric">8.1 Analysis of Variance (ANOVA - Parametric)</a></li>
   <li><a href="#permutational-multivariate-analysis-of-variance-using-distance-matrices-permanova" id="toc-permutational-multivariate-analysis-of-variance-using-distance-matrices-permanova" class="nav-link" data-scroll-target="#permutational-multivariate-analysis-of-variance-using-distance-matrices-permanova">8.2 Permutational Multivariate Analysis of Variance Using Distance Matrices (PERMANOVA)</a></li>
   <li><a href="#test-of-homogeneity-of-dispersions-permdisp" id="toc-test-of-homogeneity-of-dispersions-permdisp" class="nav-link" data-scroll-target="#test-of-homogeneity-of-dispersions-permdisp">8.3 Test of homogeneity of dispersions (PERMDISP)</a></li>
+  <li><a href="#analysis-of-similarity-anosim---non-parametric" id="toc-analysis-of-similarity-anosim---non-parametric" class="nav-link" data-scroll-target="#analysis-of-similarity-anosim---non-parametric">8.4 Analysis of Similarity (ANOSIM - Non Parametric)</a></li>
   </ul></li>
-  <li><a href="#exploring-phylogenetic-diversity---plotting-abundances-with-phyloseq" id="toc-exploring-phylogenetic-diversity---plotting-abundances-with-phyloseq" class="nav-link" data-scroll-target="#exploring-phylogenetic-diversity---plotting-abundances-with-phyloseq">9. Exploring Phylogenetic Diversity - Plotting Abundances with <i>Phyloseq</i></a></li>
-  <li><a href="#extra-stuff" id="toc-extra-stuff" class="nav-link" data-scroll-target="#extra-stuff">EXTRA STUFF</a>
+  <li><a href="#exploring-phylogenetic-diversity" id="toc-exploring-phylogenetic-diversity" class="nav-link" data-scroll-target="#exploring-phylogenetic-diversity">9. Exploring Phylogenetic Diversity</a>
   <ul class="collapse">
-  <li><a href="#analysis-of-similarity-anosim---non-parametric" id="toc-analysis-of-similarity-anosim---non-parametric" class="nav-link" data-scroll-target="#analysis-of-similarity-anosim---non-parametric">7.6 Analysis of Similarity (ANOSIM - Non Parametric)</a></li>
-  <li><a href="#simper" id="toc-simper" class="nav-link" data-scroll-target="#simper">SIMPER</a></li>
+  <li><a href="#more-interesting-materials-and-references" id="toc-more-interesting-materials-and-references" class="nav-link" data-scroll-target="#more-interesting-materials-and-references">More interesting materials and references</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info">Session Info</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -162,42 +195,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="nioz-bioinformatics-workshop-2023" class="level2">
-<h2 class="anchored" data-anchor-id="nioz-bioinformatics-workshop-2023">NIOZ Bioinformatics Workshop 2023</h2>
+<section id="nioz-bioinformatics-workshop-2023" class="level2 unnumbered unlisted">
+<h2 class="unnumbered unlisted anchored" data-anchor-id="nioz-bioinformatics-workshop-2023">NIOZ Bioinformatics Workshop 2023</h2>
+<section id="s8-amplicon-data-analyses-in-r" class="level3 unnumbered unlisted">
+<h3 class="unnumbered unlisted anchored" data-anchor-id="s8-amplicon-data-analyses-in-r">S8: Amplicon Data Analyses in R</h3>
+<section id="swan-ls-sow-gonçalo-piedade-harry-witte" class="level4 unnumbered unlisted">
+<h4 class="unnumbered unlisted anchored" data-anchor-id="swan-ls-sow-gonçalo-piedade-harry-witte">Swan LS Sow | Gonçalo Piedade | Harry Witte</h4>
+<section id="march-30-2023" class="level5 unnumbered unlisted">
+<h5 class="unnumbered unlisted anchored" data-anchor-id="march-30-2023">March 30, 2023</h5>
 </section>
-<section id="s8-amplicon-data-analyses-in-r" class="level2">
-<h2 class="anchored" data-anchor-id="s8-amplicon-data-analyses-in-r">S8: Amplicon Data Analyses in R</h2>
-<section id="swan-ls-sow-gonçalo-piedade-harry-witte" class="level4">
-<h4 class="anchored" data-anchor-id="swan-ls-sow-gonçalo-piedade-harry-witte">Swan LS Sow, Gonçalo Piedade, Harry Witte</h4>
-<section id="march-30-2023" class="level5">
-<h5 class="anchored" data-anchor-id="march-30-2023">March 30, 2023</h5>
 </section>
 </section>
 </section>
 <section id="before-we-begin" class="level1">
 <h1>0. Before we begin</h1>
 <section id="overview-dataset-introduction" class="level3">
-<h3 class="anchored" data-anchor-id="overview-dataset-introduction">0.1 Overview, Dataset Introduction</h3>
+<h3 class="anchored" data-anchor-id="overview-dataset-introduction">Overview &amp; Dataset Introduction</h3>
 <p>In this practical, you will learn how to perform basic statistical and multivariate analyses on a dataset generated from 16S amplicon sequences. All analyses will be based on OTU/ASV (.biom) tables (and their corresponding contextual/taxonomy data), that is the output generated from CASCABEL analyses (which you have learned in S5 previously) on the raw sequence data.</p>
+<p>The dataset we are using today was generated from samples in this nice paper by <a href="https://www.frontiersin.org/articles/10.3389/fmicb.2021.673553/full">Vaksmaa et.al. (2021)</a></p>
+<p><img src="https://user-images.githubusercontent.com/25445935/228508123-37a4d3e6-3d87-4fc9-bd3c-4f8b1d40f1f5.png" height="300"></p>
 <p>All analyses will be done in RStudio, either in <em>ada</em> or on your own computer.</p>
+<p>The general workflow of amplicon data analyses looks something like this:</p>
+<p><img src="https://user-images.githubusercontent.com/25445935/228508141-aa824f33-28ee-4e7f-9cf9-e7c55f5636a2.png" class="img-fluid" width="720">.</p>
 <p>You will learn:</p>
 <ul>
 <li>how to import .biom files into R</li>
 <li>dataframe/matrix wrangling to filter and remove unwanted/outlier data points</li>
 <li>statistically analyze the “clean” dataset with various multivariate and phylogenetic analyses methods.</li>
 </ul>
-<p>The general workflow of amplicon data analyses looks something like this:</p>
-<p><img src="https://user-images.githubusercontent.com/25445935/228508141-aa824f33-28ee-4e7f-9cf9-e7c55f5636a2.png" class="quarto-discovered-preview-image img-fluid" width="720"></p>
-<p>The dataset we are using today was generated from samples in this paper by <a href="https://www.frontiersin.org/articles/10.3389/fmicb.2021.673553/full">Vaksmaa et.al. (2021)</a></p>
-<p><img src="https://user-images.githubusercontent.com/25445935/228508123-37a4d3e6-3d87-4fc9-bd3c-4f8b1d40f1f5.png" height="300"></p>
+<p>Please bear in mind that these are just examples to illustrate how the analyses is done. Some of the analyses method may not be the best fit for the example dataset, for various reasons that we will not explore today as it is beyond the scope of this session. Do feel free to swap this up for your own data, and adapt the normalizations, transformations, resemblance measures, ordination methods etc. to suit.</p>
+<p>The workflow described above is by no means exhaustive - there is of course more aspects of the data that can be analyzed and methods that can be used, but we will be using that workflow as a guide for the purposes of this tutorial.</p>
 </section>
 <section id="prerequisites-quick-guide-on-setting-up-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="prerequisites-quick-guide-on-setting-up-rstudio">0.2 Prerequisites &amp; Quick Guide on Setting up RStudio</h3>
+<h3 class="anchored" data-anchor-id="prerequisites-quick-guide-on-setting-up-rstudio">Prerequisites &amp; Quick Guide on Setting up RStudio</h3>
 <ol type="1">
 <li><p>If required, connect to NIOZ’s VPN with the Forticlient Console</p></li>
 <li><p>On a web browser, key in the following link: <a href="http://ada.nioz.nl/8787" class="uri">http://ada.nioz.nl/8787</a></p></li>
 <li><p>Login with your NIOZ username (not email address) and server password (i.e.&nbsp;the same one you use to connect to <em>ada</em>)</p></li>
-<li><p>R scripts and the files required for this analyses are all located in: /export/lv3/scratch/bioinformatics_workshop/S8_9_MultivariateAnalysesInR</p></li>
+<li><p>The files required for this analyses are all located in: /export/lv3/scratch/bioinformatics_workshop/S8_9_AmpliconAnalysesInR</p></li>
 <li><p>Please copy any script(s) and softlink the required data files to your own working directory for this workshop. You can create your working directory in:</p></li>
 </ol>
 <div class="cell">
@@ -205,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="setting-up-the-environment" class="level3">
-<h3 class="anchored" data-anchor-id="setting-up-the-environment">0.3 Setting up the environment</h3>
+<h3 class="anchored" data-anchor-id="setting-up-the-environment">Setting up the environment</h3>
 <p><i>devtools</i> is a R package that allows you to download R Packages that are in development</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
@@ -235,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="packages-for-data-wrangling-data-cleanup" class="level3">
 <h3 class="anchored" data-anchor-id="packages-for-data-wrangling-data-cleanup">1.1 Packages for data wrangling &amp; data cleanup</h3>
-<p>This was comprehensively covered by Nina Dombrowski in the previous session. If you need a refresher please see the <a href="https://ndombrowski.github.io/Tidyverse_tutorial/#some-background-information"><i>tidyverse</i> tutorial</a> she created</p>
+<p>This was comprehensively covered by Nina Dombrowski in the previous session. If you need a refresher please see the <a href="https://ndombrowski.github.io/Tidyverse_tutorial/#some-background-information"><i>tidyverse</i> tutorial</a> she created.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -321,7 +356,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://biom-format.org/index.html">BIOM</a> stands for <b>B</b>iological <b>O</b>bservation <b>M</b>atrix and is a widely used file format for observation/abundance tables of biological samples in comparative -omics. The file stores both the observation data and corresponding metadata of the observation (e.g.&nbsp;taxonomic classification, metadata of a genome/gene family, pathway etc.)</p>
 <p>Usually we use the the .biom file with singletons already removed:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>asvtab.biom <span class="ot">&lt;-</span> <span class="fu">read_biom</span>(<span class="st">"/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/NIOZ140_new_result/asvTable_noSingletons.biom"</span>) <span class="co"># change the file path to where your copy of the .biom file is actually located</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>asvtab.biom <span class="ot">&lt;-</span> <span class="fu">read_biom</span>(<span class="st">"/Users/slssow/Documents/NIOZ/2023_NIOZ/Bioinfo_Workshop_2023/S8_AmpliconDataAnalysisRPt1/NIOZ140_new_result/asvTable_noSingletons.biom"</span>) </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># change the file path to where your copy of the .biom file is actually located</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="importing-your-asv-table-into-the-r-environment" class="level3">
 <h3 class="anchored" data-anchor-id="importing-your-asv-table-into-the-r-environment">2.1 Importing your ASV table into the R environment</h3>
@@ -706,16 +742,17 @@ logical   15100 </code></pre>
 </div>
 </div>
 </section>
-<section id="data-standardizationnormalization-transformation" class="level1">
-<h1>4. Data Standardization/Normalization &amp; Transformation</h1>
+<section id="data-standardization-normalization-transformation" class="level1">
+<h1>4. Data Standardization, Normalization &amp; Transformation</h1>
 <p>Hot tips:</p>
 <ul>
 <li>transformations != normalizations</li>
 <li>normalizations recast the data in absolute terms, transformations do not.</li>
+<li>transformations downweight the contributions of quantitatively dominant ASVs to the similarities/correlations calculated between samples</li>
 <li>The results of a transformation-based analysis must be interpreted with respect to the chosen reference.</li>
 </ul>
-<section id="species-x-site-aka-asv-table-normalizations" class="level3">
-<h3 class="anchored" data-anchor-id="species-x-site-aka-asv-table-normalizations">4.1 Species x Site (aka ASV table) normalizations</h3>
+<section id="species-x-site-a.k.a.-asv-table-normalizations" class="level3">
+<h3 class="anchored" data-anchor-id="species-x-site-a.k.a.-asv-table-normalizations">4.1 Species x Site (a.k.a. ASV table) normalizations</h3>
 <p>The decostand function in vegan can do many of the common standardization/normalization/transformation. To explore all the standardization/transformation methods available:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">decostand</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -754,7 +791,7 @@ logical   15100 </code></pre>
 </section>
 <section id="square-root-transformation" class="level4">
 <h4 class="anchored" data-anchor-id="square-root-transformation">4.3 Square-root Transformation</h4>
-<p>Also self explanatory. Takes the square root of each ASV/OTU and sample Here we are going to take the square-root transformation of our total sum-scaled sample ASV table earlier. The purpose is to downweighting the contribution of quantitatively dominant ASVs to the similarities/correlations between samples which will be calculated in the following sections.</p>
+<p>Also self explanatory. Takes the square root of each ASV/OTU and sample. Here we are going to take the square-root transformation of our total sum-scaled sample ASV table earlier. As explained above the purpose is to reduce the relative contribution of quantitatively dominant ASVs, which will influence the balance between contributions of dominant and less abundant species to the correlation matrix. Square root transformation is chosen here as it is a relatively mild form of transformation and there are more severe forms (e.g.&nbsp;Fourth root, Log X+1, P/A) which will more drastically increase the influence of less-abundant species.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>asvtab.c.StdByTotM2.p.SqRt <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(asvtab.c.StdByTotM2.p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -763,7 +800,7 @@ logical   15100 </code></pre>
 <section id="centred-log-ratio-clr-transformation-compositional" class="level3">
 <h3 class="anchored" data-anchor-id="centred-log-ratio-clr-transformation-compositional">4.5 Centred Log-ratio (CLR) Transformation [Compositional]</h3>
 <p>CLR is the most common method of transformation used in compositional data analyses introduced by Aitchison (1986). It uses the geometric mean of the sample vector as its reference.</p>
-<p>Prior to doing a CLR transformation, zero count values, which are often prevalent especially in sparse data needs to be deleted, replaced or estimated. You can do that by considering the zero count values as point estimates. We’ll use the ‘cmultRepl’ function in from the zCompositions package to do this, but there are also other packages and methods to do this [example, Gonçalo?]</p>
+<p>Prior to doing a CLR transformation, zero count values, which are often prevalent especially in sparse data needs to be deleted, replaced or estimated. You can do that by considering the zero count values as point estimates. We’ll use the ‘cmultRepl’ function in from the zCompositions package to do this, but there are also other packages and methods to do this.</p>
 <p>‘cmultRepl’ imputes zeros in compositional count data sets based on a Bayesian-multiplicative replacement (replace zeros with a small value)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>asvtab.c.no0 <span class="ot">&lt;-</span> <span class="fu">cmultRepl</span>(asvtab.c.noX, <span class="at">method =</span> <span class="st">"GBM"</span>, <span class="at">output =</span> <span class="st">"p-counts"</span>) <span class="co"># the ‘‘p-counts" option returns pseudo-counts instead of proportions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -784,209 +821,237 @@ logical   15100 </code></pre>
 </ul>
 </section>
 </section>
+<section id="alpha-diversity" class="level1">
+<h1>5. Alpha diversity</h1>
+<p>Alpha diversity metrices will give us an indication of how diverse each sample is, such as richness (no. of species observed in each site) and evenness (distribution of abundance across the species in a community/site).</p>
+<section id="sampling-effort" class="level2">
+<h2 class="anchored" data-anchor-id="sampling-effort">Sampling effort</h2>
+<p>First let’s plot some good old rarefaction curves. You want your sampling effort to be approaching or on the plateau. These curves will tend to the “true” sample richness value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(<span class="fu">t</span>(asvtab.c), <span class="at">step=</span><span class="dv">50</span>, <span class="at">cex=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="alpha-diversity-1" class="level3">
+<h3 class="anchored" data-anchor-id="alpha-diversity-1">Alpha diversity</h3>
+<p>Now let’s calculate the alpha diversity of the samples using Hill’s Numbers. Because we are not yet reaching plateau for many samples, these results will be difficult to interpret.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>alpha_diversity <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">richness =</span> <span class="fu">hill_taxa</span>(asvtab.c.StdByTotM2, <span class="at">q =</span> <span class="dv">0</span>, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">base =</span> <span class="fu">exp</span>(<span class="dv">1</span>)),</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">shannon  =</span> <span class="fu">hill_taxa</span>(asvtab.c.StdByTotM2, <span class="at">q =</span> <span class="dv">1</span>, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">base =</span> <span class="fu">exp</span>(<span class="dv">1</span>)),</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Simpson_inv =</span> <span class="fu">hill_taxa</span>(asvtab.c.StdByTotM2, <span class="at">q =</span> <span class="dv">2</span>, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">base =</span> <span class="fu">exp</span>(<span class="dv">1</span>))</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>alpha_diversity<span class="sc">$</span>Sample_ID <span class="ot">&lt;-</span> <span class="fu">row.names</span>(alpha_diversity)</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>alpha_diversity <span class="ot">&lt;-</span> <span class="fu">merge</span>(alpha_diversity, metad.N140.c , <span class="at">by=</span> <span class="st">"Sample_ID"</span> , <span class="at">all=</span>T)</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a><span class="co"># We can calculate Simpson evenness by dividing the Simpson diversity by the richness</span></span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>alpha_diversity<span class="sc">$</span>eveness <span class="ot">&lt;-</span> alpha_diversity<span class="sc">$</span>Simpson_inv<span class="sc">/</span>alpha_diversity<span class="sc">$</span>richness</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar plot (bp)</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbarplot</span>(alpha_diversity, <span class="at">x =</span> <span class="st">"Sample_ID"</span>, <span class="at">y =</span> <span class="st">"richness"</span>,</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">"Plastic"</span>,               <span class="co"># change fill color by cyl</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"white"</span>,            <span class="co"># Set bar border colors to white</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">palette =</span> <span class="st">"jco"</span>,            <span class="co"># jco journal color palett. see ?ggpar</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">sort.val =</span> <span class="st">"asc"</span>,           <span class="co"># Sort the value in ascending order</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">sort.by.groups =</span> <span class="cn">TRUE</span>,      <span class="co"># Sort inside each group</span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">x.text.angle =</span> <span class="dv">90</span>           <span class="co"># Rotate vertically x axis texts</span></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbarplot</span>(alpha_diversity, <span class="at">x =</span> <span class="st">"Sample_ID"</span>, <span class="at">y =</span> <span class="st">"eveness"</span>,</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"Plastic"</span>,               <span class="co"># change fill color by cyl</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"white"</span>,            <span class="co"># Set bar border colors to white</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">"jco"</span>,            <span class="co"># jco journal color palett. see ?ggpar</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">sort.val =</span> <span class="st">"asc"</span>,           <span class="co"># Sort the value in ascending order</span></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">sort.by.groups =</span> <span class="cn">TRUE</span>,      <span class="co"># Sort inside each group</span></span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">x.text.angle =</span> <span class="dv">90</span>           <span class="co"># Rotate vertically x axis texts</span></span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-51-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbarplot</span>(alpha_diversity, <span class="at">x =</span> <span class="st">"Sample_ID"</span>, <span class="at">y =</span> <span class="st">"shannon"</span>,</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"Plastic"</span>,               <span class="co"># change fill color by cyl</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"white"</span>,            <span class="co"># Set bar border colors to white</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">"jco"</span>,            <span class="co"># jco journal color palett. see ?ggpar</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">sort.val =</span> <span class="st">"asc"</span>,           <span class="co"># Sort the value in ascending order</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">sort.by.groups =</span> <span class="cn">TRUE</span>,      <span class="co"># Sort inside each group</span></span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">x.text.angle =</span> <span class="dv">90</span>           <span class="co"># Rotate vertically x axis texts</span></span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-51-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare Shannon diversity between plastic groups with a boxplot:</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggboxplot</span>(alpha_diversity, <span class="at">x =</span> <span class="st">"Plastic"</span>, <span class="at">y =</span> <span class="st">"shannon"</span>,</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"Plastic"</span>, <span class="at">palette =</span> <span class="st">"jco"</span>,</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">"jitter"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-51-4.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="phylogenetic-alpha-diversity" class="level3">
+<h3 class="anchored" data-anchor-id="phylogenetic-alpha-diversity">Phylogenetic alpha Diversity</h3>
+<p>If you have a tree for your OTUs/ASVs you can also calculate phylogeny diversity, i.e.&nbsp;if you have a community that is skewed towards a few branches of the tree or if it’s evenly distributed across the tree.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(picante)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>df.pd <span class="ot">&lt;-</span> <span class="fu">pd</span>(<span class="fu">t</span>(otu_table_ps1), treefile_p1,<span class="at">include.root=</span>F) <span class="co"># t(ou_table) transposes the table for use in picante and the tre file comes from the first code chunck we used to read tree file (see making a phyloseq object section).</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
 <section id="distance-metrices" class="level1">
-<h1>5. Distance Metrices</h1>
+<h1>6. Distance Metrices</h1>
 <p>As shown in the flow chart above, before we ordinate our data in a chart, or perform multivariate analyses on it, we first need to define the resemblance (similarity/dissimilarity) between every pair of sample for all samples, which will result in a similarity/dissimilarity matrix.</p>
-<p>There are many different resemblance indices, some of the common ones are: Bray-Curtis, Euclidean, Gower, Morista, Cao, etc…</p>
+<p>There are many different resemblance indices, some of the common ones are: Bray-Curtis, Euclidean, Gower, Morista, Cao, Jaccard, etc…</p>
 <p>For a comprehensive list of available indices:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>    ?<span class="fu">vegdist</span>() <span class="co"># in package vegan</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    distanceMethodList <span class="co"># in package phyloseq</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>    ?<span class="fu">vegdist</span>() <span class="co"># in package vegan</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>    distanceMethodList <span class="co"># in package phyloseq</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We’ll use the Bray-Curtis index today, which is one of the most common:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>asvtab.c.StdByTotM2.p.SqRt.bray <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(<span class="fu">t</span>(asvtab.c.StdByTotM2.p.SqRt), <span class="at">method =</span> <span class="st">"bray"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>asvtab.c.StdByTotM2.p.SqRt.bray <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(<span class="fu">t</span>(asvtab.c.StdByTotM2.p.SqRt), <span class="at">method =</span> <span class="st">"bray"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If your dataset only has a simple species list, with only presence or absence of each species, you could use the Jaccard matrix:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>asvtab.c.StdByTotM2.p.SqRt.jac <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(<span class="fu">t</span>(asvtab.c.StdByTotM2.p), <span class="at">method =</span> <span class="st">"bray"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There are also distance metrices that are more suitable for compositional analyses, such as the Aitchison distance matrix. We’ll compute resemblance matrix from centre-log ratio transformed ASV table earlier. The Aitchison distance based resemblance matrix can be computed using the package <i>coda.base</i>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>clr.no0.aitd <span class="ot">&lt;-</span> <span class="fu">dist</span>(clr.no0, <span class="at">method =</span> <span class="st">"aitchison"</span>) <span class="co"># aitchison distance will not work unless zeros in ASV table is imputed!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="alpha-diversity" class="level1">
-<h1>6. Alpha diversity</h1>
-<p>Most of our alpha diversity analyses are going to be done with functions from the following packages:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ALDEx2)</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hillR)</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>First let’s plot some good old rarefraction curves</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(<span class="fu">t</span>(asvtab.c), <span class="at">step=</span><span class="dv">50</span>, <span class="at">cex=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Now let’s calculate the alpha diversity of the samples using Hill’s Numbers:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>alpha_diversity <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">richness =</span> <span class="fu">hill_taxa</span>(asvtab.c.StdByTotM2, <span class="at">q =</span> <span class="dv">0</span>, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">base =</span> <span class="fu">exp</span>(<span class="dv">1</span>)),</span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">shannon  =</span> <span class="fu">hill_taxa</span>(asvtab.c.StdByTotM2, <span class="at">q =</span> <span class="dv">1</span>, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">base =</span> <span class="fu">exp</span>(<span class="dv">1</span>)),</span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Simpson_inv =</span> <span class="fu">hill_taxa</span>(asvtab.c.StdByTotM2, <span class="at">q =</span> <span class="dv">2</span>, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">base =</span> <span class="fu">exp</span>(<span class="dv">1</span>))</span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>alpha_diversity<span class="sc">$</span>Sample_ID <span class="ot">&lt;-</span> <span class="fu">row.names</span>(alpha_diversity)</span>
-<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>alpha_diversity <span class="ot">&lt;-</span> <span class="fu">merge</span>(alpha_diversity, metad.N140.c , <span class="at">by=</span> <span class="st">"Sample_ID"</span> , <span class="at">all=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar plot (bp)</span></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbarplot</span>(alpha_diversity, <span class="at">x =</span> <span class="st">"Sample_ID"</span>, <span class="at">y =</span> <span class="st">"richness"</span>,</span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">"Plastic"</span>,               <span class="co"># change fill color by cyl</span></span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"white"</span>,            <span class="co"># Set bar border colors to white</span></span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">palette =</span> <span class="st">"jco"</span>,            <span class="co"># jco journal color palett. see ?ggpar</span></span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">sort.val =</span> <span class="st">"asc"</span>,           <span class="co"># Sort the value in ascending order</span></span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">sort.by.groups =</span> <span class="cn">TRUE</span>,      <span class="co"># Sort inside each group</span></span>
-<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">x.text.angle =</span> <span class="dv">90</span>           <span class="co"># Rotate vertically x axis texts</span></span>
-<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbarplot</span>(alpha_diversity, <span class="at">x =</span> <span class="st">"Sample_ID"</span>, <span class="at">y =</span> <span class="st">"Simpson_inv"</span>,</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"Plastic"</span>,               <span class="co"># change fill color by cyl</span></span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"white"</span>,            <span class="co"># Set bar border colors to white</span></span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">"jco"</span>,            <span class="co"># jco journal color palett. see ?ggpar</span></span>
-<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">sort.val =</span> <span class="st">"asc"</span>,           <span class="co"># Sort the value in ascending order</span></span>
-<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">sort.by.groups =</span> <span class="cn">TRUE</span>,      <span class="co"># Sort inside each group</span></span>
-<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">x.text.angle =</span> <span class="dv">90</span>           <span class="co"># Rotate vertically x axis texts</span></span>
-<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-55-2.png" class="img-fluid" width="672"></p>
-</div>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbarplot</span>(alpha_diversity, <span class="at">x =</span> <span class="st">"Sample_ID"</span>, <span class="at">y =</span> <span class="st">"shannon"</span>,</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"Plastic"</span>,               <span class="co"># change fill color by cyl</span></span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"white"</span>,            <span class="co"># Set bar border colors to white</span></span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">"jco"</span>,            <span class="co"># jco journal color palett. see ?ggpar</span></span>
-<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">sort.val =</span> <span class="st">"asc"</span>,           <span class="co"># Sort the value in ascending order</span></span>
-<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">sort.by.groups =</span> <span class="cn">TRUE</span>,      <span class="co"># Sort inside each group</span></span>
-<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">x.text.angle =</span> <span class="dv">90</span>           <span class="co"># Rotate vertically x axis texts</span></span>
-<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-55-3.png" class="img-fluid" width="672"></p>
-</div>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perorm pairwise comparisons</span></span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggboxplot</span>(alpha_diversity, <span class="at">x =</span> <span class="st">"Plastic"</span>, <span class="at">y =</span> <span class="st">"shannon"</span>,</span>
-<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"Plastic"</span>, <span class="at">palette =</span> <span class="st">"jco"</span>,</span>
-<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">"jitter"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-55-4.png" class="img-fluid" width="672"></p>
-</div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>clr.no0.aitd <span class="ot">&lt;-</span> <span class="fu">dist</span>(clr.no0, <span class="at">method =</span> <span class="st">"aitchison"</span>) <span class="co"># aitchison distance will not work unless zeros in ASV table is imputed!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="ordination-methods" class="level1">
 <h1>7. Ordination Methods</h1>
-<p>Ordination is representing data from a large number of sites as points in a multidimensional space (usually 2 or 3).</p>
-<p>Some of the ordination methods commonly used are: non-metric Multidimensional Scaling (nMDS), Principle Coordinate Analyses (PCoA), Correspondence Analyses (CA), Principle Component Analyses (PCA)…We’ll explore nMDS and PCA today.</p>
+<p>Ordination is representing data from a large number of sites as points in a multidimensional space.</p>
+<p>Some of the ordination methods commonly used are:</p>
+<p>Older-school:</p>
+<ul>
+<li><p>non-metric Multidimensional Scaling (nMDS)</p></li>
+<li><p>Principle Coordinate Analyses (PCoA)</p></li>
+<li><p>Correspondence Analyses (CA)</p></li>
+<li><p>Principle Component Analyses (PCA)</p></li>
+</ul>
+<p>Newer-school:</p>
+<ul>
+<li><p>Uniform Manifold Approximation and Projection for Dimension Reduction (<a href="https://cran.r-project.org/web/packages/umap/vignettes/umap.html">UMAP</a>)</p></li>
+<li><p>T-Distributed Stochastic Neighbor Embedding (<a href="https://cran.r-project.org/web/packages/tsne/index.html">t-SNE</a>)</p></li>
+</ul>
 <section id="nmds" class="level3">
 <h3 class="anchored" data-anchor-id="nmds">7.1 nMDS</h3>
-<p>The nMDS will be based on the Bray-Curtis resemblance matrix that we computed earlier:</p>
+<p>nMDS constrains a distance matrix into a given number of dimensions, and aims to represent samples as points in a low dimensional space (usually 2 or 3). The closer the points are to each other the more similar thier community composition. You can use nMDS on a wide range of data types and resemblances. The nMDS we will build will be based on the Bray-Curtis resemblance matrix that we computed earlier:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>(nmds<span class="ot">&lt;-</span><span class="fu">metaMDS</span>(asvtab.c.StdByTotM2.p.SqRt.bray, <span class="at">k =</span> <span class="dv">2</span>)) <span class="co"># where k is the number of dimensions </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>(nmds<span class="ot">&lt;-</span><span class="fu">metaMDS</span>(asvtab.c.StdByTotM2.p.SqRt.bray, <span class="at">k =</span> <span class="dv">2</span>)) <span class="co"># where k is the number of dimensions </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To plot the nMDS:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nmds<span class="sc">$</span>points, <span class="at">type =</span> <span class="st">"n"</span>);<span class="fu">text</span>(nmds<span class="sc">$</span>points, <span class="at">label =</span> <span class="fu">rownames</span>(nmds<span class="sc">$</span>points))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nmds<span class="sc">$</span>points, <span class="at">type =</span> <span class="st">"n"</span>);<span class="fu">text</span>(nmds<span class="sc">$</span>points, <span class="at">label =</span> <span class="fu">rownames</span>(nmds<span class="sc">$</span>points))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Now that’s not a very pretty (or informative) plot, is it? Let’s make it better :) To do that, we first need to save the coordinates of our nMDS plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>nmds.coord <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(nmds<span class="sc">$</span>points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>nmds.coord <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(nmds<span class="sc">$</span>points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Another useful value to take note of in an nMDS plot is its stress value. Usually we aim for a min/max value of [INSERT STRESS VALUE RANGE HERE]. The lower the better. If the stress values are high, you may need to increase the number of dimensions during the nMDS analyses, since this signifies that your plot is too complex to be analyzed in just 2 dimensions. To view/save the stress value of our nMDS plot from earlier:</p>
+<p>Another useful value to take note of in an nMDS plot is its stress value. Stress values actually measure the values in the Shepard plot and gives an indication of how faithfully the high dimension relationships are represented in low dimensional ordinations. Usually we aim for a value of &lt; 0.1. The lower the better. Anything above 0.2-0.3 signifies unreliability. If the stress values are high, you may need to increase the number of dimensions during the nMDS analyses, since this signifies that your plot is too complex to be analyzed in just 2 dimensions. To view/save the stress value of our nMDS plot from earlier:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>nmds<span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>nmds<span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1864228</code></pre>
+<pre><code>[1] 0.1864212</code></pre>
 </div>
 </div>
 <p>Now let’s make a nicer nMDS plot with the data we have saved, with the plastic type of each sample represented by different colors. To do so, we’ll first make our categorical variables as factors:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>plastic.type <span class="ot">&lt;-</span> <span class="fu">factor</span>(metad.N140.c.noX<span class="sc">$</span>Plastic[<span class="dv">1</span><span class="sc">:</span><span class="dv">38</span>], <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"PE"</span>, <span class="st">"PP"</span>, <span class="st">"PS"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'PE'</span>, <span class="st">'PP'</span>, <span class="st">'PS'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>plastic.type <span class="ot">&lt;-</span> <span class="fu">factor</span>(metad.N140.c.noX<span class="sc">$</span>Plastic[<span class="dv">1</span><span class="sc">:</span><span class="dv">38</span>], <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"PE"</span>, <span class="st">"PP"</span>, <span class="st">"PS"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'PE'</span>, <span class="st">'PP'</span>, <span class="st">'PS'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now let’s make the plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>nmds.pretty <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nmds.coord, <span class="fu">aes</span>(<span class="at">x =</span> MDS1, <span class="at">y =</span> MDS2)) <span class="sc">+</span> </span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="fu">aes</span>(<span class="at">colour =</span> plastic.type))<span class="sc">+</span> </span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>), </span>
-<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>), </span>
-<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">colour =</span><span class="st">"black"</span>), </span>
-<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.12</span>, <span class="fl">0.85</span>), <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>), </span>
-<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>, <span class="at">colour =</span> <span class="st">"black"</span>), </span>
-<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">face =</span> <span class="st">"bold"</span>), </span>
-<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>(), <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="fl">1.2</span>),</span>
-<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key=</span><span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
-<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"NMDS1"</span>, <span class="at">colour =</span> <span class="st">"Plastic Type"</span>, <span class="at">y =</span> <span class="st">"NMDS2"</span>)  <span class="sc">+</span> </span>
-<span id="cb83-12"><a href="#cb83-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#0000FF"</span>, <span class="st">"#a62800"</span>, <span class="st">"#00ff00"</span>))  <span class="sc">+</span></span>
-<span id="cb83-13"><a href="#cb83-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">1.7</span>, <span class="at">y=</span><span class="fl">1.5</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">label =</span> <span class="st">"2D stress: 0.1864"</span>) <span class="sc">+</span></span>
-<span id="cb83-14"><a href="#cb83-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">label=</span>metad.N140.c.noX<span class="sc">$</span>Sample, <span class="at">label.size=</span><span class="cn">NA</span>, <span class="at">box.padding =</span> <span class="fl">0.1</span>, </span>
-<span id="cb83-15"><a href="#cb83-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">min.segment.length =</span> <span class="cn">Inf</span>) <span class="co"># set min.segment.length to inf to remove line pointers</span></span>
-<span id="cb83-16"><a href="#cb83-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-17"><a href="#cb83-17" aria-hidden="true" tabindex="-1"></a>nmds.pretty</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>nmds.pretty <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nmds.coord, <span class="fu">aes</span>(<span class="at">x =</span> MDS1, <span class="at">y =</span> MDS2)) <span class="sc">+</span> </span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="fu">aes</span>(<span class="at">colour =</span> plastic.type))<span class="sc">+</span> </span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>), </span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>), </span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">colour =</span><span class="st">"black"</span>), </span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.12</span>, <span class="fl">0.85</span>), <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>), </span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>, <span class="at">colour =</span> <span class="st">"black"</span>), </span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">face =</span> <span class="st">"bold"</span>), </span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>(), <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="fl">1.2</span>),</span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key=</span><span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"NMDS1"</span>, <span class="at">colour =</span> <span class="st">"Plastic Type"</span>, <span class="at">y =</span> <span class="st">"NMDS2"</span>)  <span class="sc">+</span> </span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#0000FF"</span>, <span class="st">"#a62800"</span>, <span class="st">"#00ff00"</span>))  <span class="sc">+</span></span>
+<span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">1.7</span>, <span class="at">y=</span><span class="fl">1.5</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">label =</span> <span class="st">"2D stress: 0.1864"</span>) <span class="sc">+</span></span>
+<span id="cb84-14"><a href="#cb84-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">label=</span>metad.N140.c.noX<span class="sc">$</span>Sample, <span class="at">label.size=</span><span class="cn">NA</span>, <span class="at">box.padding =</span> <span class="fl">0.1</span>, </span>
+<span id="cb84-15"><a href="#cb84-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">min.segment.length =</span> <span class="cn">Inf</span>) <span class="co"># set min.segment.length to inf to remove line pointers</span></span>
+<span id="cb84-16"><a href="#cb84-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-17"><a href="#cb84-17" aria-hidden="true" tabindex="-1"></a>nmds.pretty</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="pca-compositional" class="level3">
-<h3 class="anchored" data-anchor-id="pca-compositional">7.2 PCA [Compositional]</h3>
-<p>Gloor et.al. (2017) recommends the use of Aitchison distance or the philr phylogenetic transform to define resemblance matrix. philr is based on binary partitions along an evolutionary tree and can be used as a UniFrac distance metric replacement, but only examines the relationships between chosen partitions. Aitchison distance is defined as the Euclidean distance between samples are clr transformation.</p>
-<p>Here we will compute our PCA based on the Aitchison distance, since we have already computed it in on our ASV table above.</p>
+<h3 class="anchored" data-anchor-id="pca-compositional">7.2 PCA (Compositional)</h3>
+<p>PCA is a projection of points in high dimensional variable space onto axes that minimizes residual variation in Euclidean space. It is typically used on datasets where there are not many zeros, so traditionally it was not considered very suitable for many biological data, though this has started to change in the recent years with the push for the compositional approach to data analyses. It is recommended to do your research on whether this is suitable for your dataset before proceeding!</p>
+<p>Gloor et.al. (2017) recommends the use of Aitchison distance or the philr phylogenetic transform to define resemblance matrix. philr is based on binary partitions along an evolutionary tree and can be used as a UniFrac distance metric replacement, but only examines the relationships between chosen partitions. Aitchison distance is defined as the Euclidean distance between samples that are clr transformed.</p>
+<p>Here we will compute our PCA based on the Aitchison distance, which we have already computed above.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>clr.no0.aitd.pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(clr.no0.aitd) <span class="co"># from centre-log ratio transformed ASV table earlier </span></span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(clr.no0.aitd.pca)</span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(clr.no0.aitd.pca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>clr.no0.aitd.pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(clr.no0.aitd) <span class="co"># from centre-log ratio transformed ASV table earlier </span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(clr.no0.aitd.pca)</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(clr.no0.aitd.pca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also visualize the eigenvalues/scree plot of the PCA. This shows the percentage of variances explained by each principle component.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>clr.no0.aitd.pca.eig <span class="ot">&lt;-</span> <span class="fu">fviz_eig</span>(clr.no0.aitd.pca) <span class="co"># need package factoextra</span></span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>clr.no0.aitd.pca.eig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>clr.no0.aitd.pca.eig <span class="ot">&lt;-</span> <span class="fu">fviz_eig</span>(clr.no0.aitd.pca) <span class="co"># need package factoextra</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>clr.no0.aitd.pca.eig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now let’s plot the PCA, grouping points by plastic type (use factor ‘plastic.type’ from nMDS earlier):</p>
+<p>To plot the PCA:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>pca.aitd <span class="ot">&lt;-</span> <span class="fu">fviz_pca_ind</span>(clr.no0.aitd.pca, </span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">"none"</span>),</span>
-<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">title =</span> <span class="st">"NIOZ140 by Plastic Type (Aitchison)"</span>,</span>
-<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">invisible=</span><span class="st">"quali"</span>) <span class="sc">+</span> <span class="co"># this removes the mean PCA point/centroid! (https://stackoverflow.com/questions/46977743/pca-analysis-remove-centroid)</span></span>
-<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> plastic.type), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">8</span>)) <span class="sc">+</span></span>
-<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#0000FF"</span>, <span class="st">"#a62800"</span>, <span class="st">"#00ff00"</span>)) <span class="sc">+</span></span>
-<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>)) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>)) <span class="sc">+</span> </span>
-<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">shape=</span><span class="cn">FALSE</span>, <span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"Plastic Type"</span>, <span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">shape =</span> <span class="dv">16</span>))) <span class="sc">+</span></span>
-<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>)) <span class="sc">+</span></span>
-<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>)) <span class="sc">+</span></span>
-<span id="cb86-16"><a href="#cb86-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.9</span>, <span class="fl">0.9</span>)) <span class="sc">+</span></span>
-<span id="cb86-17"><a href="#cb86-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">label=</span>metad.N140.c<span class="sc">$</span>Sample, <span class="at">label.size=</span><span class="cn">NA</span>, <span class="at">box.padding =</span> <span class="fl">0.1</span>, </span>
-<span id="cb86-18"><a href="#cb86-18" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">min.segment.length =</span> <span class="cn">Inf</span>) <span class="co"># set min.segment.length to inf to remove line pointers. Needs package 'ggrepel'</span></span>
-<span id="cb86-19"><a href="#cb86-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-20"><a href="#cb86-20" aria-hidden="true" tabindex="-1"></a>pca.aitd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>pca.aitd <span class="ot">&lt;-</span> <span class="fu">fviz_pca_ind</span>(clr.no0.aitd.pca , </span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">geom =</span> <span class="st">"point"</span>)</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>pca.aitd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="pcoa" class="level3">
 <h3 class="anchored" data-anchor-id="pcoa">7.3 PCoA</h3>
+<p>PCoA is similar to nMDS, except that it approximates eigenvectors based on the resemblance matrix. It is a projection of points onto axes that minimizes residual variation in the space of the resemblance measure. It is also very flexible and accepts any symmetrical resemblance matrix.</p>
+<p>To learn more about the function in <i>vegan</i>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">wcmdscale</span>() <span class="co"># called weighted but here we do not weight our samples, so it's a normal PCoA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A simple script to plot PCoA:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>pcoa<span class="ot">&lt;-</span><span class="fu">wcmdscale</span>(asvtab.c.StdByTotM2.p.SqRt.bray, <span class="at">eig =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pcoa)</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>pcoa.coords <span class="ot">&lt;-</span> pcoa<span class="sc">$</span>points <span class="co"># samples coordinates across eigenvectors</span></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>pcoa.coords <span class="ot">&lt;-</span> pcoa<span class="sc">$</span>eig <span class="co"># eigen values (quantity of information on each eigenvector)</span></span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>(pcoa<span class="sc">$</span>eig<span class="sc">/</span><span class="fu">sum</span>(pcoa<span class="sc">$</span>eig))<span class="sc">*</span><span class="dv">100</span> <span class="co"># % eigen values (quantity of information on each eigenvector)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="multivariate-comparisons" class="level1">
 <h1>8. Multivariate Comparisons</h1>
-<section id="analysis-of-variance-anova---parametric" class="level3">
-<h3 class="anchored" data-anchor-id="analysis-of-variance-anova---parametric">8.1 Analysis of Variance (ANOVA - Parametric)</h3>
-</section>
 <section id="permutational-multivariate-analysis-of-variance-using-distance-matrices-permanova" class="level3">
 <h3 class="anchored" data-anchor-id="permutational-multivariate-analysis-of-variance-using-distance-matrices-permanova">8.2 Permutational Multivariate Analysis of Variance Using Distance Matrices (PERMANOVA)</h3>
-<p>In a typical ANOVA you study the variance of a variable across categories. PERMANOVA allows you to do this but for distance matrix across clusters/categories/variables. It’s non-parametrical and used more and more in microbial ecology. To learn more about the function:</p>
+<p>You have made your ordination plots, which show that there is some sort of grouping of your samples and variation between the groups. But how much variation is there really? Which pairs of groups (communities) are more similar to different to each other? Are they statistically significant?</p>
+<p>In a typical Analysis of Variance (ANOVA) you study the variance of a variable across categories. PERMANOVA allows you to do this but for distance matrices across clusters/categories/variables or groups of samples. It’s non-parametrical and used more and more in microbial ecology. To learn more about the function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">adonis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">adonis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>An example of a one-way PERMANOVA with our dataset:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>permanova<span class="ot">&lt;-</span><span class="fu">adonis2</span>((<span class="fu">t</span>(asvtab.c.StdByTotM2.p.SqRt)) <span class="sc">~</span> Plastic , <span class="at">data =</span> metad.N140.c.noX, <span class="at">permutations =</span> <span class="dv">999</span>, <span class="at">method =</span> <span class="st">"bray"</span>)</span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>permanova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>permanova<span class="ot">&lt;-</span><span class="fu">adonis2</span>((<span class="fu">t</span>(asvtab.c.StdByTotM2.p.SqRt)) <span class="sc">~</span> Plastic , <span class="at">data =</span> metad.N140.c.noX, <span class="at">permutations =</span> <span class="dv">999</span>, <span class="at">method =</span> <span class="st">"bray"</span>)</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>permanova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Permutation test for adonis under reduced model
 Terms added sequentially (first to last)
@@ -1004,44 +1069,43 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>It may also be helpful to make pair-wise comparisons among all pairs of the factor of interest (i.e.&nbsp;the different type of Plastics). Unfortunately the stock ‘adonis2’ function in <i>vegan</i> does not do this, so we will have to rely on a separate package. Google will point you to many options, for today we will rely on the package <i>ecole</i></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"phytomosaic/ecole"</span>)</span>
-<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ecole)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"phytomosaic/ecole"</span>)</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ecole)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>permanova_pw <span class="ot">&lt;-</span> <span class="fu">permanova_pairwise</span>(</span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>(asvtab.c.StdByTotM2.p.SqRt),</span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">grp =</span> metad.N140.c.noX<span class="sc">$</span>Plastic,</span>
-<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">permutations =</span> <span class="dv">999</span>,</span>
-<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"bray"</span>,</span>
-<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">padj =</span> <span class="st">"bonferroni"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>permanova_pw <span class="ot">&lt;-</span> <span class="fu">permanova_pairwise</span>(</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>(asvtab.c.StdByTotM2.p.SqRt),</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">grp =</span> metad.N140.c.noX<span class="sc">$</span>Plastic,</span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">permutations =</span> <span class="dv">999</span>,</span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"bray"</span>,</span>
+<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">padj =</span> <span class="st">"bonferroni"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>permanova_pw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>permanova_pw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     pairs  SumOfSqs  F.Model         R2  pval p.adj
-1 PE vs PP 0.6474769 2.087657 0.07432648 0.003 0.009
+1 PE vs PP 0.6474769 2.087657 0.07432648 0.001 0.003
 2 PE vs PS 0.7340274 2.538368 0.08894580 0.001 0.003
-3 PP vs PS 0.4014957 1.234897 0.06420087 0.115 0.345</code></pre>
+3 PP vs PS 0.4014957 1.234897 0.06420087 0.113 0.339</code></pre>
 </div>
 </div>
+<p>From the PERMANOVA above, we can conclude that the bacterial communities are from the different plastic types are overall significantly different from each other. The pairwise PERMANOVA shows that plastic type PE contains a significantly different bacterial composition from PP and PS, but PP and PS does not differ significantly.</p>
+<p>If you have more complex experimental designs or datasets, the interactions between the effects/factors can also be tested and teased apart with 2-way (or higher) crossed or nested PERMANOVA tests.</p>
 </section>
 <section id="test-of-homogeneity-of-dispersions-permdisp" class="level3">
 <h3 class="anchored" data-anchor-id="test-of-homogeneity-of-dispersions-permdisp">8.3 Test of homogeneity of dispersions (PERMDISP)</h3>
-<ul>
-<li>betadisper function in vegan</li>
-<li>done with Bray-Curtis distances between samples</li>
-<li>can be used with any resemblance measure</li>
-</ul>
+<p>It is often easy to confound the differences between groups of samples and dispersion within the groups itself. Here, PERMDISP complements the PERMANOVA test by providing an indication of how much multivariate dispersion exists within a group of samples.</p>
+<p>In <i>vegan</i>, we can do a PERMDISP with the ‘betadisper’ function. The test is typically done on Bray-Curtis resemblances between samples, though in theory the test can be used with any resemblance measure.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first define the factors:</span></span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>permd.grp <span class="ot">&lt;-</span> <span class="fu">factor</span>(metad.N140.c.noX<span class="sc">$</span>Plastic) </span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>permdisp <span class="ot">&lt;-</span> <span class="fu">betadisper</span>(asvtab.c.StdByTotM2.p.SqRt.bray, permd.grp, </span>
-<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">type =</span> <span class="st">"centroid"</span>, <span class="at">bias.adjust =</span> <span class="cn">FALSE</span>, <span class="at">sqrt.dist =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate variation p-value based on traditional tables</span></span>
-<span id="cb94-8"><a href="#cb94-8" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(permdisp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first define the factors:</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>permd.grp <span class="ot">&lt;-</span> <span class="fu">factor</span>(metad.N140.c.noX<span class="sc">$</span>Plastic) </span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>permdisp <span class="ot">&lt;-</span> <span class="fu">betadisper</span>(asvtab.c.StdByTotM2.p.SqRt.bray, permd.grp, </span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">type =</span> <span class="st">"centroid"</span>, <span class="at">bias.adjust =</span> <span class="cn">FALSE</span>, <span class="at">sqrt.dist =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate variation p-value based on traditional tables</span></span>
+<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(permdisp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -1050,8 +1114,8 @@ Response: Distances
 Groups     2 0.016442 0.0082209  1.9894  0.152
 Residuals 35 0.144633 0.0041324               </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Permutation test for the F-values</span></span>
-<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">permutest</span>(permdisp, <span class="at">pairwise =</span> <span class="cn">TRUE</span>, <span class="at">permutations =</span> <span class="dv">999</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Permutation test for the F-values</span></span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">permutest</span>(permdisp, <span class="at">pairwise =</span> <span class="cn">TRUE</span>, <span class="at">permutations =</span> <span class="dv">999</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Permutation test for homogeneity of multivariate dispersions
@@ -1060,41 +1124,56 @@ Number of permutations: 999
 
 Response: Distances
           Df   Sum Sq   Mean Sq      F N.Perm Pr(&gt;F)
-Groups     2 0.016442 0.0082209 1.9894    999  0.141
+Groups     2 0.016442 0.0082209 1.9894    999  0.177
 Residuals 35 0.144633 0.0041324                     
 
 Pairwise comparisons:
 (Observed p-value below diagonal, permuted p-value above diagonal)
         PE      PP    PS
-PE         0.06800 0.822
-PP 0.08578         0.114
+PE         0.08100 0.843
+PP 0.08578         0.107
 PS 0.83968 0.11186      </code></pre>
 </div>
 </div>
+<p>Based on the PERMDISP analyses above, the H<sub>0</sub> hypothesis (of no difference in dispersion of the groups) is not rejected (p=0.152), so the significant PERMANOVA is caused by difference in plastic type (not by dispersion).</p>
+</section>
+<section id="analysis-of-similarity-anosim---non-parametric" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-of-similarity-anosim---non-parametric">8.4 Analysis of Similarity (ANOSIM - Non Parametric)</h3>
+<p>ANOSIM also allows you to statistically test whether there are significant differences between groups of samples (e.g.&nbsp;different sites, treatment or sampling times). It is comparable to PERMANOVA, although you can only do up to two-way experimental designs. ANOSIM also ranks values in the resemblance matrix prior to the analyses. As compared to PERMANOVA, the ANOSIM R-statistic is scaled to range only between -1 and +1, which may be useful as an absolute measure of strength of differences between groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>anosim <span class="ot">&lt;-</span> <span class="fu">with</span>(metad.N140.c.noX, <span class="fu">anosim</span>(<span class="fu">t</span>(asvtab.c.StdByTotM2.p.SqRt.bray), Plastic))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anosim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
-<section id="exploring-phylogenetic-diversity---plotting-abundances-with-phyloseq" class="level1">
-<h1>9. Exploring Phylogenetic Diversity - Plotting Abundances with <i>Phyloseq</i></h1>
+<section id="exploring-phylogenetic-diversity" class="level1">
+<h1>9. Exploring Phylogenetic Diversity</h1>
+<p>Finally, we would also like to know what is the distribution of the different phyla in the bacterial communities, and how this distribution may vary between the different plastic types.</p>
+<section id="plotting-abundances-with-phyloseq" class="level4">
+<h4 class="anchored" data-anchor-id="plotting-abundances-with-phyloseq">Plotting Abundances with <i>Phyloseq</i></h4>
 <p><i>Phyloseq</i> is a great package to visualize your data. It makes sure that your data tables are nicely matching. So it’s fool proof! Here we cover some absolute basics. The <i>Phyloseq</i> graphs use the same aesthetics as ggplot.</p>
+</section>
 <section id="generate-your-phyloseq-objects-and-make-a-simple-plot" class="level4">
 <h4 class="anchored" data-anchor-id="generate-your-phyloseq-objects-and-make-a-simple-plot">Generate your <i>Phyloseq</i> objects and make a simple plot</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>OTU <span class="ot">=</span> asvtab.c.StdByTotM2 <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>() <span class="sc">|&gt;</span> <span class="fu">otu_table</span>(, <span class="at">taxa_are_rows =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>TAX <span class="ot">=</span> taxo.mat <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>() <span class="sc">|&gt;</span> <span class="fu">tax_table</span>()</span>
-<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> metad.N140.c <span class="sc">|&gt;</span> <span class="st">`</span><span class="at">rownames&lt;-</span><span class="st">`</span>( metad.N140.c<span class="sc">$</span>Sample_ID ) <span class="sc">|&gt;</span> <span class="fu">sample_data</span>()</span>
-<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>carbom <span class="ot">&lt;-</span> <span class="fu">phyloseq</span>(OTU, TAX, samples)</span>
-<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_bar</span>(carbom, <span class="at">fill =</span> <span class="st">"Phylum"</span>)<span class="sc">+</span></span>
-<span id="cb98-8"><a href="#cb98-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">color=</span>Phylum, <span class="at">fill=</span>Phylum), <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="st">"stack"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>OTU <span class="ot">=</span> asvtab.c.StdByTotM2 <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>() <span class="sc">|&gt;</span> <span class="fu">otu_table</span>(, <span class="at">taxa_are_rows =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>TAX <span class="ot">=</span> taxo.mat <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>() <span class="sc">|&gt;</span> <span class="fu">tax_table</span>()</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> metad.N140.c <span class="sc">|&gt;</span> <span class="st">`</span><span class="at">rownames&lt;-</span><span class="st">`</span>( metad.N140.c<span class="sc">$</span>Sample_ID ) <span class="sc">|&gt;</span> <span class="fu">sample_data</span>()</span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>carbom <span class="ot">&lt;-</span> <span class="fu">phyloseq</span>(OTU, TAX, samples)</span>
+<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-7"><a href="#cb103-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_bar</span>(carbom, <span class="at">fill =</span> <span class="st">"Phylum"</span>)<span class="sc">+</span></span>
+<span id="cb103-8"><a href="#cb103-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">color=</span>Phylum, <span class="at">fill=</span>Phylum), <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="st">"stack"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-72-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-76-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_bar</span>(carbom, <span class="at">fill=</span><span class="st">"Phylum"</span>) <span class="sc">+</span></span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">color=</span>Phylum, <span class="at">fill=</span>Phylum), <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="st">"stack"</span>)<span class="sc">+</span></span>
-<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Plastic, <span class="at">scales=</span><span class="st">"free_x"</span>, <span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_bar</span>(carbom, <span class="at">fill=</span><span class="st">"Phylum"</span>) <span class="sc">+</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">color=</span>Phylum, <span class="at">fill=</span>Phylum), <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Plastic, <span class="at">scales=</span><span class="st">"free_x"</span>, <span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-72-2.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-76-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -1102,26 +1181,26 @@ PS 0.83968 0.11186      </code></pre>
 <h4 class="anchored" data-anchor-id="zooming-into-specific-taxa">Zooming into specific taxa</h4>
 <p>Let’s zoom into the Bacteriodetes:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>GPr <span class="ot">=</span> <span class="fu">subset_taxa</span>(carbom, (Phylum <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Bacteroidota"</span>)))</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_bar</span>(GPr, <span class="at">fill=</span><span class="st">"Family"</span>) <span class="sc">+</span></span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">color=</span>Family, <span class="at">fill=</span>Family), <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="st">"stack"</span>)<span class="sc">+</span></span>
-<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Plastic, <span class="at">scales=</span><span class="st">"free_x"</span>, <span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>GPr <span class="ot">=</span> <span class="fu">subset_taxa</span>(carbom, (Phylum <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Bacteroidota"</span>)))</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_bar</span>(GPr, <span class="at">fill=</span><span class="st">"Family"</span>) <span class="sc">+</span></span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">color=</span>Family, <span class="at">fill=</span>Family), <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Plastic, <span class="at">scales=</span><span class="st">"free_x"</span>, <span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-73-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-77-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Then we’ll plot the 100 most abundant Bacteroidetes ASVs:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>TopASVs <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">taxa_sums</span>(GPr), <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>])</span>
-<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>Top <span class="ot">&lt;-</span> <span class="fu">prune_taxa</span>(TopASVs, GPr)</span>
-<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_bar</span>(Top, <span class="at">fill=</span><span class="st">"Genus"</span>) <span class="sc">+</span></span>
-<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">color=</span>Genus, <span class="at">fill=</span>Genus), <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="st">"stack"</span>)<span class="sc">+</span></span>
-<span id="cb101-7"><a href="#cb101-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Plastic, <span class="at">scales=</span><span class="st">"free_x"</span>, <span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>TopASVs <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">taxa_sums</span>(GPr), <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>])</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>Top <span class="ot">&lt;-</span> <span class="fu">prune_taxa</span>(TopASVs, GPr)</span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_bar</span>(Top, <span class="at">fill=</span><span class="st">"Genus"</span>) <span class="sc">+</span></span>
+<span id="cb106-6"><a href="#cb106-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">color=</span>Genus, <span class="at">fill=</span>Genus), <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb106-7"><a href="#cb106-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Plastic, <span class="at">scales=</span><span class="st">"free_x"</span>, <span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-74-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-78-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -1129,43 +1208,130 @@ PS 0.83968 0.11186      </code></pre>
 <h4 class="anchored" data-anchor-id="another-way-to-plot">Another way to plot</h4>
 <p><i>Phyloseq</i> plotting is good but will only take you so far. You can export the tables from <i>Phyloseq</i> into normal data.frames or generate ggplot ready tables for more flexible plotting.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table by Phylum</span></span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">tax_glom</span>(carbom, <span class="at">taxrank =</span> <span class="st">'Phylum'</span>) <span class="co"># agglomerate taxa</span></span>
-<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">psmelt</span>(y1)</span>
-<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT!</span></span>
-<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-7"><a href="#cb102-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>y1, <span class="fu">aes</span>(<span class="at">x=</span>Sample, <span class="at">y=</span>Abundance, <span class="at">fill=</span>Phylum)) <span class="sc">+</span></span>
-<span id="cb102-8"><a href="#cb102-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(), <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="st">"stack"</span>)<span class="sc">+</span></span>
-<span id="cb102-9"><a href="#cb102-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Plastic, <span class="at">scales=</span><span class="st">"free_x"</span>, <span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table by Phylum</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">tax_glom</span>(carbom, <span class="at">taxrank =</span> <span class="st">'Phylum'</span>) <span class="co"># agglomerate taxa</span></span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">psmelt</span>(y1)</span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT!</span></span>
+<span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-7"><a href="#cb107-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>y1, <span class="fu">aes</span>(<span class="at">x=</span>Sample, <span class="at">y=</span>Abundance, <span class="at">fill=</span>Phylum)) <span class="sc">+</span></span>
+<span id="cb107-8"><a href="#cb107-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(), <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb107-9"><a href="#cb107-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Plastic, <span class="at">scales=</span><span class="st">"free_x"</span>, <span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-75-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-79-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
+<section id="more-interesting-materials-and-references" class="level3">
+<h3 class="anchored" data-anchor-id="more-interesting-materials-and-references">More interesting materials and references</h3>
+<ol type="1">
+<li><p>Learn R multivariate data analysis from one of Vegan’s developers: <a href="https://www.youtube.com/live/tVnnG7mFeqA?feature=share">Video1</a> | <a href="https://www.youtube.com/live/PR1B_JkO49s?feature=share">Video 2</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=D6CunpqF04E&amp;list=PLmNrK_nkqBpIIRdQTS2aOs5OD7vVMKWAi&amp;ab_channel=RiffomonasProject">Riffomonas Project microbiome analysis in R</a></p></li>
+</ol>
 </section>
-<section id="extra-stuff" class="level1">
-<h1>EXTRA STUFF</h1>
-<section id="analysis-of-similarity-anosim---non-parametric" class="level3">
-<h3 class="anchored" data-anchor-id="analysis-of-similarity-anosim---non-parametric">7.6 Analysis of Similarity (ANOSIM - Non Parametric)</h3>
-<p>ANOSIM allows you to statistically test whether there are significant differences between groups of samples (e.g.&nbsp;different sites, treatment or sampling times)</p>
+<section id="session-info" class="level3">
+<h3 class="anchored" data-anchor-id="session-info">Session Info</h3>
+<details>
+<summary>
+Show full session info
+</summary>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>anosim <span class="ot">&lt;-</span> <span class="fu">with</span>(metad.N140.c.noX, <span class="fu">anosim</span>(<span class="fu">t</span>(asvtab.c.StdByTotM2.p.SqRt.bray), Plastic))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.2.2 (2022-10-31)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Monterey 12.5.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] corrplot_0.92         factoextra_1.0.7      ggpubr_0.6.0         
+ [4] ggrepel_0.9.3         rstatix_0.7.2         hillR_0.5.1          
+ [7] ALDEx2_1.30.0         ecole_0.9-2021        zCompositions_1.4.0-1
+[10] truncnorm_1.0-8       NADA_1.6-1.1          survival_3.5-5       
+[13] MASS_7.3-58.3         Hmisc_5.0-1           pgirmess_2.0.0       
+[16] labdsv_2.0-1          mgcv_1.8-42           nlme_3.1-162         
+[19] FactoMineR_2.7        ade4_1.7-22           compositions_2.0-5   
+[22] coda.base_0.5.4.3     phyloseq_1.42.0       vegan_2.6-4          
+[25] lattice_0.20-45       permute_0.9-7         lubridate_1.9.2      
+[28] forcats_1.0.0         stringr_1.5.0         dplyr_1.1.0          
+[31] purrr_1.0.1           readr_2.1.4           tidyr_1.3.0          
+[34] tibble_3.2.0          ggplot2_3.4.1         tidyverse_2.0.0      
+[37] biomformat_1.26.0    
+
+loaded via a namespace (and not attached):
+  [1] backports_1.4.1             plyr_1.8.8                 
+  [3] igraph_1.4.1                sp_1.6-0                   
+  [5] splines_4.2.2               BiocParallel_1.32.5        
+  [7] GenomeInfoDb_1.34.9         digest_0.6.31              
+  [9] foreach_1.5.2               htmltools_0.5.4            
+ [11] fansi_1.0.4                 magrittr_2.0.3             
+ [13] checkmate_2.1.0             cluster_2.1.4              
+ [15] tzdb_0.3.0                  Biostrings_2.66.0          
+ [17] matrixStats_0.63.0          bayesm_3.1-5               
+ [19] timechange_0.2.0            colorspace_2.1-0           
+ [21] xfun_0.37                   crayon_1.5.2               
+ [23] RCurl_1.98-1.10             jsonlite_1.8.4             
+ [25] iterators_1.0.14            ape_5.7-1                  
+ [27] glue_1.6.2                  gtable_0.3.1               
+ [29] zlibbioc_1.44.0             emmeans_1.8.5              
+ [31] XVector_0.38.0              DelayedArray_0.24.0        
+ [33] car_3.1-1                   RcppZiggurat_0.1.6         
+ [35] Rhdf5lib_1.20.0             BiocGenerics_0.44.0        
+ [37] DEoptimR_1.0-11             abind_1.4-5                
+ [39] scales_1.2.1                mvtnorm_1.1-3              
+ [41] DBI_1.1.3                   Rcpp_1.0.10                
+ [43] xtable_1.8-4                spData_2.2.2               
+ [45] htmlTable_2.4.1             units_0.8-1                
+ [47] flashClust_1.01-2           foreign_0.8-84             
+ [49] spdep_1.2-8                 proxy_0.4-27               
+ [51] Formula_1.2-5               stats4_4.2.2               
+ [53] DT_0.27                     htmlwidgets_1.6.1          
+ [55] wk_0.7.1                    ellipsis_0.3.2             
+ [57] farver_2.1.1                pkgconfig_2.0.3            
+ [59] nnet_7.3-18                 multcompView_0.1-8         
+ [61] deldir_1.0-6                utf8_1.2.3                 
+ [63] labeling_0.4.2              tidyselect_1.2.0           
+ [65] rlang_1.0.6                 reshape2_1.4.4             
+ [67] munsell_0.5.0               tools_4.2.2                
+ [69] cli_3.6.0                   generics_0.1.3             
+ [71] broom_1.0.4                 evaluate_0.20              
+ [73] fastmap_1.1.1               yaml_2.3.7                 
+ [75] knitr_1.42                  robustbase_0.95-0          
+ [77] s2_1.1.2                    leaps_3.1                  
+ [79] compiler_4.2.2              rstudioapi_0.14            
+ [81] ggsignif_0.6.4              e1071_1.7-13               
+ [83] stringi_1.7.12              Matrix_1.5-3               
+ [85] classInt_0.4-9              ggsci_3.0.0                
+ [87] tensorA_0.36.2              multtest_2.54.0            
+ [89] vctrs_0.5.2                 pillar_1.8.1               
+ [91] lifecycle_1.0.3             rhdf5filters_1.10.0        
+ [93] estimability_1.4.1          data.table_1.14.8          
+ [95] bitops_1.0-7                GenomicRanges_1.50.2       
+ [97] R6_2.5.1                    KernSmooth_2.23-20         
+ [99] gridExtra_2.3               IRanges_2.32.0             
+[101] codetools_0.2-19            boot_1.3-28.1              
+[103] SummarizedExperiment_1.28.0 rhdf5_2.42.0               
+[105] withr_2.5.0                 S4Vectors_0.36.2           
+[107] GenomeInfoDbData_1.2.9      parallel_4.2.2             
+[109] hms_1.1.2                   grid_4.2.2                 
+[111] rpart_4.1.19                coda_0.19-4                
+[113] class_7.3-21                Rfast_2.0.7                
+[115] rmarkdown_2.20              carData_3.0-5              
+[117] MatrixGenerics_1.10.0       Rtsne_0.16                 
+[119] sf_1.0-10                   scatterplot3d_0.3-42       
+[121] Biobase_2.58.0              base64enc_0.1-3            </code></pre>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anosim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="simper" class="level3">
-<h3 class="anchored" data-anchor-id="simper">SIMPER</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>metad.N140.c.noX<span class="fl">.2</span> <span class="ot">&lt;-</span> metad.N140.c.noX <span class="sc">|&gt;</span> <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">'Sample_ID'</span>)</span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>simpr <span class="ot">&lt;-</span> <span class="fu">with</span>(metad.N140.c.noX<span class="fl">.2</span>, <span class="fu">simper</span>(<span class="fu">t</span>(asvtab.c.noX), Plastic, <span class="at">permutations =</span> <span class="dv">999</span>)) <span class="co"># samples as rows, ASVs as columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>simpr_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(simpr)</span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(simpr_sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+</details>
 
 
 </section>
@@ -1199,23 +1365,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -1280,92 +1432,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
