@@ -563,7 +563,7 @@ Hot tips:
 -   transformations downweight the contributions of quantitatively dominant ASVs to the similarities/correlations calculated between samples
 -   The results of a transformation-based analysis must be interpreted with respect to the chosen reference.
 
-### 4.1 Species x Site (a.k.a. ASV table) normalizations
+#### Species x Site (a.k.a. ASV table) normalizations
 
 The decostand function in vegan can do many of the common standardization/normalization/transformation. To explore all the standardization/transformation methods available:
 
@@ -580,7 +580,7 @@ Check out these papers for more details on why compositional data analyses metho
 a.  Gloor, G. B., et al. (2017). "Microbiome Datasets Are Compositional: And This Is Not Optional." Front Microbiol 8: 2224.
 b.  Quinn, T. P., et al. (2019). "A field guide for the compositional analysis of any-omics data." Gigascience 8(9).
 
-#### 4.1.1 Total Sum-Scaling (TSS)
+#### 4.1. Total Sum-Scaling (TSS)
 
 With this method, the function transforms the feature table into relative abundance by dividing the number of total reads of each sample. For more info, see this [link](https://rdrr.io/github/HuaZou/MyRtools/man/normalize-methods.html)
 
@@ -594,7 +594,7 @@ We want the results in percentage of OTUs/ASVs per sample, so:
 asvtab.c.StdByTotM2.p <- asvtab.c.StdByTotM2*100
 ```
 
-#### 4.1 Presence/Absence
+#### 4.2 Presence/Absence
 
 Self explanatory. Converts count of each ASV/OTU per sample to presence (1) or absence (0) across all samples.
 
@@ -602,7 +602,7 @@ Self explanatory. Converts count of each ASV/OTU per sample to presence (1) or a
 decostand(asvtab.c, method = "pa", MARGIN = 2)
 ```
 
-#### 4.2 Hellinger Transformation
+#### 4.3 Hellinger Transformation
 
 All values in a row are divided by the row sum. Then, the square root of the values are taken. Hellinger Transformations minimize effects of vastly different sample total abundances.
 
@@ -610,7 +610,7 @@ All values in a row are divided by the row sum. Then, the square root of the val
 decostand(asvtab.c, method = "hellinger", MARGIN = 2)
 ```
 
-#### 4.3 Square-root Transformation
+#### 4.4 Square-root Transformation
 
 Also self explanatory. Takes the square root of each ASV/OTU and sample. Here we are going to take the square-root transformation of our total sum-scaled sample ASV table earlier. As explained above the purpose is to reduce the relative contribution of quantitatively dominant ASVs, which will influence the balance between contributions of dominant and less abundant species to the correlation matrix. Square root transformation is chosen here as it is a relatively mild form of transformation and there are more severe forms (e.g. Fourth root, Log X+1, P/A) which will more drastically increase the influence of less-abundant species.
 
@@ -618,7 +618,7 @@ Also self explanatory. Takes the square root of each ASV/OTU and sample. Here we
 asvtab.c.StdByTotM2.p.SqRt <- sqrt(asvtab.c.StdByTotM2.p)
 ```
 
-### 4.5 Centred Log-ratio (CLR) Transformation \[Compositional\]
+#### 4.5 Centred Log-ratio (CLR) Transformation \[Compositional\]
 
 CLR is the most common method of transformation used in compositional data analyses introduced by Aitchison (1986). It uses the geometric mean of the sample vector as its reference.
 
@@ -648,7 +648,7 @@ Other log-ratio based transformation (that you can explore in your own time):
 
 Alpha diversity metrices will give us an indication of how diverse each sample is, such as richness (no. of species observed in each site) and evenness (distribution of abundance across the species in a community/site).
 
-## Sampling effort
+#### Sampling effort
 
 First let's plot some good old rarefaction curves. You want your sampling effort to be approaching or on the plateau. These curves will tend to the "true" sample richness value.
 
@@ -656,7 +656,7 @@ First let's plot some good old rarefaction curves. You want your sampling effort
 rarecurve(t(asvtab.c), step=50, cex=0.5)
 ```
 
-### Alpha diversity
+#### Alpha diversity
 
 Now let's calculate the alpha diversity of the samples using Hill's Numbers. Because we are not yet reaching plateau for many samples, these results will be difficult to interpret.
 
@@ -713,7 +713,7 @@ ggboxplot(alpha_diversity, x = "Plastic", y = "shannon",
 
 ```
 
-### Phylogenetic alpha Diversity
+#### Phylogenetic alpha Diversity
 
 If you have a tree for your OTUs/ASVs you can also calculate phylogeny diversity, i.e. if you have a community that is skewed towards a few branches of the tree or if it's evenly distributed across the tree.
 
@@ -778,7 +778,7 @@ Newer-school:
 
 -   T-Distributed Stochastic Neighbor Embedding ([t-SNE](https://cran.r-project.org/web/packages/tsne/index.html))
 
-### 7.1 nMDS
+#### 7.1 nMDS
 
 nMDS constrains a distance matrix into a given number of dimensions, and aims to represent samples as points in a low dimensional space (usually 2 or 3). The closer the points are to each other the more similar thier community composition. You can use nMDS on a wide range of data types and resemblances. The nMDS we will build will be based on the Bray-Curtis resemblance matrix that we computed earlier:
 
@@ -832,7 +832,7 @@ nmds.pretty <- ggplot(nmds.coord, aes(x = MDS1, y = MDS2)) +
 nmds.pretty
 ```
 
-### 7.2 PCA (Compositional)
+#### 7.2 PCA (Compositional)
 
 PCA is a projection of points in high dimensional variable space onto axes that minimizes residual variation in Euclidean space. It is typically used on datasets where there are not many zeros, so traditionally it was not considered very suitable for many biological data, though this has started to change in the recent years with the push for the compositional approach to data analyses. It is recommended to do your research on whether this is suitable for your dataset before proceeding!
 
@@ -862,7 +862,7 @@ pca.aitd <- fviz_pca_ind(clr.no0.aitd.pca ,
 pca.aitd
 ```
 
-### 7.3 PCoA
+#### 7.3 PCoA
 
 PCoA is similar to nMDS, except that it approximates eigenvectors based on the resemblance matrix. It is a projection of points onto axes that minimizes residual variation in the space of the resemblance measure. It is also very flexible and accepts any symmetrical resemblance matrix.
 
@@ -887,7 +887,7 @@ pcoa.coords <- pcoa$eig # eigen values (quantity of information on each eigenvec
 
 # 8. Multivariate Comparisons
 
-### 8.2 Permutational Multivariate Analysis of Variance Using Distance Matrices (PERMANOVA)
+#### 8.2 Permutational Multivariate Analysis of Variance Using Distance Matrices (PERMANOVA)
 
 You have made your ordination plots, which show that there is some sort of grouping of your samples and variation between the groups. But how much variation is there really? Which pairs of groups (communities) are more similar to different to each other? Are they statistically significant?
 
@@ -929,7 +929,7 @@ From the PERMANOVA above, we can conclude that the bacterial communities are fro
 
 If you have more complex experimental designs or datasets, the interactions between the effects/factors can also be tested and teased apart with 2-way (or higher) crossed or nested PERMANOVA tests.
 
-### 8.3 Test of homogeneity of dispersions (PERMDISP)
+#### 8.3 Test of homogeneity of dispersions (PERMDISP)
 
 It is often easy to confound the differences between groups of samples and dispersion within the groups itself. Here, PERMDISP complements the PERMANOVA test by providing an indication of how much multivariate dispersion exists within a group of samples.
 
@@ -952,7 +952,7 @@ permutest(permdisp, pairwise = TRUE, permutations = 999)
 
 Based on the PERMDISP analyses above, the H~0~ hypothesis (of no difference in dispersion of the groups) is not rejected (p=0.152), so the significant PERMANOVA is caused by difference in plastic type (not by dispersion).
 
-### 8.4 Analysis of Similarity (ANOSIM - Non Parametric)
+#### 8.4 Analysis of Similarity (ANOSIM - Non Parametric)
 
 ANOSIM also allows you to statistically test whether there are significant differences between groups of samples (e.g. different sites, treatment or sampling times). It is comparable to PERMANOVA, although you can only do up to two-way experimental designs. ANOSIM also ranks values in the resemblance matrix prior to the analyses. As compared to PERMANOVA, the ANOSIM R-statistic is scaled to range only between -1 and +1, which may be useful as an absolute measure of strength of differences between groups.
 
@@ -1032,13 +1032,13 @@ ggplot(data=y1, aes(x=Sample, y=Abundance, fill=Phylum)) +
 
 ```
 
-### More interesting materials and references
+# More interesting materials and references
 
 1.  Learn R multivariate data analysis from one of Vegan's developers: [Video1](https://www.youtube.com/live/tVnnG7mFeqA?feature=share) \| [Video 2](https://www.youtube.com/live/PR1B_JkO49s?feature=share)
 
 2.  [Riffomonas Project microbiome analysis in R](https://www.youtube.com/watch?v=D6CunpqF04E&list=PLmNrK_nkqBpIIRdQTS2aOs5OD7vVMKWAi&ab_channel=RiffomonasProject)
 
-### Session Info
+#### Session Info
 
 <details>
 
