@@ -747,7 +747,7 @@ asvtab.c.StdByTotM2.p.SqRt.bray <- vegdist(t(asvtab.c.StdByTotM2.p.SqRt), method
 If your dataset only has a simple species list, with only presence or absence of each species, you could use the Jaccard matrix:
 
 ```{r,eval=F}
-asvtab.c.StdByTotM2.p.SqRt.jac <- vegdist(t(asvtab.c.StdByTotM2.p), method = "bray")
+asvtab.c.StdByTotM2.p.SqRt.jac <- vegdist(t(asvtab.c.StdByTotM2.p), method = "jaccard")
 ```
 
 There are also distance metrices that are more suitable for compositional analyses, such as the Aitchison distance matrix. We'll compute resemblance matrix from centre-log ratio transformed ASV table earlier. The Aitchison distance based resemblance matrix can be computed using the package <i>coda.base</i>:
